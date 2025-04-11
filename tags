@@ -84,6 +84,11 @@ Surface	VulkanWrappers/Surface.cpp	/^Surface::Surface(Surface&& rhs)$/;"	f	class
 Surface	VulkanWrappers/Surface.cpp	/^Surface::Surface(VkInstance instance, GLFWwindow* window) :$/;"	f	class:Surface
 Surface	VulkanWrappers/Surface.cpp	/^Surface::Surface(VkInstance instance, GLFWwindow* window)$/;"	f	class:Surface
 Surface	VulkanWrappers/Surface.h	/^class Surface$/;"	c
+Swapchain	VulkanWrappers/Swapchain.cpp	/^Swapchain::Swapchain(Swapchain&& rhs) :$/;"	f	class:Swapchain
+Swapchain	VulkanWrappers/Swapchain.cpp	/^Swapchain::Swapchain(Swapchain&& rhs)$/;"	f	class:Swapchain
+Swapchain	VulkanWrappers/Swapchain.cpp	/^Swapchain::Swapchain(VkDevice device, const VkSwapchainCreateInfoKHR& createInfo) :$/;"	f	class:Swapchain
+Swapchain	VulkanWrappers/Swapchain.cpp	/^Swapchain::Swapchain(VkDevice device, const VkSwapchainCreateInfoKHR& createInfo)$/;"	f	class:Swapchain
+Swapchain	VulkanWrappers/Swapchain.h	/^class Swapchain$/;"	c
 Utility	./Utility/CMakeLists.txt	/^add_library(Utility Utility.cpp)$/;"	t
 VK_CHECK	./GLFWwrappers/VulkanWithGLFW.h	/^#define VK_CHECK(/;"	d
 VulkanTriangle	./CMakeLists.txt	/^project(VulkanTriangle)$/;"	p
@@ -111,6 +116,7 @@ device	./VulkanWrappers/Framebuffer.h	/^    VkDevice device;$/;"	m	class:Framebu
 device	./VulkanWrappers/ImageView.h	/^    VkDevice device;$/;"	m	class:ImageView	typeref:typename:VkDevice
 device	./VulkanWrappers/RenderPass.h	/^    VkDevice device;$/;"	m	class:RenderPass	typeref:typename:VkDevice
 device	./VulkanWrappers/Semaphore.h	/^    VkDevice device;$/;"	m	class:Semaphore	typeref:typename:VkDevice
+device	VulkanWrappers/Swapchain.h	/^    VkDevice device;$/;"	m	class:Swapchain	typeref:typename:VkDevice
 doesPhysicalDeviceSupportExtensions	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportExtensions($/;"	f	typeref:typename:bool
 doesPhysicalDeviceSupportFeatures	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportFeatures($/;"	f	typeref:typename:bool
 doesPhysicalDeviceSupportRequiredQueueCapabilities	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportRequiredQueueCapabilities(VkInstance instance, VkPhysicalDevice ph/;"	f	typeref:typename:bool
@@ -133,6 +139,7 @@ getHandle	./VulkanWrappers/LogicalDevice.cpp	/^VkDevice LogicalDevice::getHandle
 getHandle	./VulkanWrappers/RenderPass.cpp	/^VkRenderPass RenderPass::getHandle()$/;"	f	class:RenderPass	typeref:typename:VkRenderPass
 getHandle	./VulkanWrappers/Semaphore.cpp	/^VkSemaphore Semaphore::getHandle()$/;"	f	class:Semaphore	typeref:typename:VkSemaphore
 getHandle	VulkanWrappers/Surface.cpp	/^VkSurfaceKHR Surface::getHandle()$/;"	f	class:Surface	typeref:typename:VkSurfaceKHR
+getHandle	VulkanWrappers/Swapchain.cpp	/^VkSwapchainKHR Swapchain::getHandle()$/;"	f	class:Swapchain	typeref:typename:VkSwapchainKHR
 getPhysicalDevice	./VulkanWrappers/LogicalDevice.cpp	/^VkPhysicalDevice LogicalDevice::getPhysicalDevice()$/;"	f	class:LogicalDevice	typeref:typename:VkPhysicalDevice
 getPhysicalDeviceQueueFamilyProperties	./VulkanWrappers/EnumerationHelpers.h	/^inline std::vector<VkQueueFamilyProperties> getPhysicalDeviceQueueFamilyProperties(VkPhysicalDev/;"	f	typeref:typename:std::vector<VkQueueFamilyProperties>
 getPhysicalDeviceSurfaceFormatsKHR	./VulkanWrappers/EnumerationHelpers.h	/^inline std::vector<VkSurfaceFormatKHR> getPhysicalDeviceSurfaceFormatsKHR($/;"	f	typeref:typename:std::vector<VkSurfaceFormatKHR>
@@ -156,6 +163,7 @@ handle	./VulkanWrappers/LogicalDevice.h	/^    VkDevice handle;$/;"	m	class:Logic
 handle	./VulkanWrappers/RenderPass.h	/^    VkRenderPass handle;$/;"	m	class:RenderPass	typeref:typename:VkRenderPass
 handle	./VulkanWrappers/Semaphore.h	/^    VkSemaphore handle;$/;"	m	class:Semaphore	typeref:typename:VkSemaphore
 handle	VulkanWrappers/Surface.h	/^    VkSurfaceKHR handle;$/;"	m	class:Surface	typeref:typename:VkSurfaceKHR
+handle	VulkanWrappers/Swapchain.h	/^    VkSwapchainKHR handle;$/;"	m	class:Swapchain	typeref:typename:VkSwapchainKHR
 initVulkanAndGLFW	./GLFWwrappers/GLFWmanager.cpp	/^void GLFWmanager::initVulkanAndGLFW()$/;"	f	class:GLFWmanager	typeref:typename:void
 instance	./GLFWwrappers/GLFWmanager.cpp	/^GLFWmanager* GLFWmanager::instance = nullptr;$/;"	m	class:GLFWmanager	typeref:typename:GLFWmanager *
 instance	./GLFWwrappers/GLFWmanager.h	/^    static GLFWmanager* instance;$/;"	m	class:GLFWmanager	typeref:typename:GLFWmanager *
@@ -173,6 +181,7 @@ operator =	./VulkanWrappers/LogicalDevice.cpp	/^LogicalDevice& LogicalDevice::op
 operator =	./VulkanWrappers/RenderPass.cpp	/^RenderPass& RenderPass::operator=(RenderPass&& rhs)$/;"	f	class:RenderPass	typeref:typename:RenderPass &
 operator =	./VulkanWrappers/Semaphore.cpp	/^Semaphore& Semaphore::operator=(Semaphore&& rhs)$/;"	f	class:Semaphore	typeref:typename:Semaphore &
 operator =	VulkanWrappers/Surface.cpp	/^Surface& Surface::operator=(Surface&& rhs)$/;"	f	class:Surface	typeref:typename:Surface &
+operator =	VulkanWrappers/Swapchain.cpp	/^Swapchain& Swapchain::operator=(Swapchain&& rhs)$/;"	f	class:Swapchain	typeref:typename:Swapchain &
 outputImageView	./Rendering/RenderingFramebuffer.h	/^    ImageView outputImageView;$/;"	m	class:RenderingFramebuffer	typeref:typename:ImageView
 physicalDevice	./VulkanWrappers/LogicalDevice.h	/^    VkPhysicalDevice physicalDevice;$/;"	m	class:LogicalDevice	typeref:typename:VkPhysicalDevice
 presentFamilyIndex	./Rendering/RenderingDevice.h	/^    size_t graphicsFamilyIndex, presentFamilyIndex;$/;"	m	class:RenderingDevice	typeref:typename:size_t
@@ -190,4 +199,5 @@ window	./GLFWwrappers/Window.h	/^    GLFWwindow* window;$/;"	m	class:Window	type
 ~RenderPass	./VulkanWrappers/RenderPass.cpp	/^RenderPass::~RenderPass()$/;"	f	class:RenderPass
 ~Semaphore	./VulkanWrappers/Semaphore.cpp	/^Semaphore::~Semaphore()$/;"	f	class:Semaphore
 ~Surface	VulkanWrappers/Surface.cpp	/^Surface::~Surface()$/;"	f	class:Surface
+~Swapchain	VulkanWrappers/Swapchain.cpp	/^Swapchain::~Swapchain()$/;"	f	class:Swapchain
 ~Window	./GLFWwrappers/Window.cpp	/^Window::~Window()$/;"	f	class:Window
