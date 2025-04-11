@@ -71,6 +71,7 @@ RenderPass	./VulkanWrappers/RenderPass.h	/^class RenderPass$/;"	c
 RenderPass	VulkanWrappers/RenderPass.cpp	/^RenderPass::RenderPass(RenderPass&& rhs) :$/;"	f	class:RenderPass
 RenderPass	VulkanWrappers/RenderPass.cpp	/^RenderPass::RenderPass(VkDevice device, const VkRenderPassCreateInfo& createInfo)$/;"	f	class:RenderPass
 Rendering	./Rendering/CMakeLists.txt	/^add_library(Rendering InstanceHelpers.cpp)$/;"	t
+Rendering	Rendering/CMakeLists.txt	/^add_library(Rendering InstanceHelpers.cpp RenderingDevice.cpp ImageViewHelpers.cpp RenderPassHel/;"	t
 RenderingDevice	./Rendering/RenderingDevice.cpp	/^RenderingDevice::RenderingDevice(RenderingDevice&& rhs) :$/;"	f	class:RenderingDevice
 RenderingDevice	./Rendering/RenderingDevice.cpp	/^RenderingDevice::RenderingDevice(VkInstance instance)$/;"	f	class:RenderingDevice
 RenderingDevice	./Rendering/RenderingDevice.h	/^class RenderingDevice : public LogicalDevice$/;"	c
@@ -87,6 +88,7 @@ Utility	./Utility/CMakeLists.txt	/^add_library(Utility Utility.cpp)$/;"	t
 VK_CHECK	./GLFWwrappers/VulkanWithGLFW.h	/^#define VK_CHECK(/;"	d
 VulkanTriangle	./CMakeLists.txt	/^project(VulkanTriangle)$/;"	p
 VulkanWrappers	./VulkanWrappers/CMakeLists.txt	/^add_library(VulkanWrappers Instance.cpp)$/;"	t
+VulkanWrappers	VulkanWrappers/CMakeLists.txt	/^add_library(VulkanWrappers Instance.cpp LogicalDevice.cpp RenderPass.cpp Fence.cpp Semaphore.cpp/;"	t
 Window	./GLFWwrappers/Window.cpp	/^Window::Window()$/;"	f	class:Window
 Window	./GLFWwrappers/Window.h	/^class Window$/;"	c
 __anonb35aecf60102	VulkanWrappers/EnumerationHelpers.h	/^	enumerateArray<VkLayerProperties>([](uint32_t* count, VkLayerProperties* elements) {$/;"	f	function:enumerateInstanceLayerProperties	file:

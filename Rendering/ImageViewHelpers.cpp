@@ -17,5 +17,5 @@ ImageView createRenderingImageView(VkDevice device, VkImage image)
     createInfo.components = {}; // creates identity swizzle for all components
     createInfo.subresourceRange = subresource;
 
-    return ImageView(device, &createInfo);
+    return ImageView(device, createInfo);
 }

@@ -26,6 +26,8 @@ ImageView& ImageView::operator=(ImageView&& rhs)
     handle = rhs.handle;
 
     rhs.handle = VK_NULL_HANDLE;
+
+    return *this;
 }
 
 VkImageView ImageView::getHandle()

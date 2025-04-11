@@ -2,7 +2,7 @@
 
 Fence::Fence(VkDevice device, const VkFenceCreateInfo& createInfo)
 {
-    VK_CHECK(vkCreatefence(device, &createInfo, nullptr, &handle));
+    VK_CHECK(vkCreateFence(device, &createInfo, nullptr, &handle));
 }
 
 Fence::~Fence()

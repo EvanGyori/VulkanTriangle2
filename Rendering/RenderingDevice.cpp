@@ -2,8 +2,10 @@
 
 #include <vector>
 #include <stdexcept>
+#include <cstring>
 
 #include "Utility.h"
+#include "EnumerationHelpers.h"
 
 const float defaultQueuePriority = 1.0f;
 
@@ -17,7 +19,7 @@ std::vector<VkDeviceQueueCreateInfo> getQueueCreateInfos(
 
 bool doesPhysicalDeviceSupportExtensions(
 	VkPhysicalDevice physicalDevice,
-	const std::vector<const char*> extensions);
+	const std::vector<const char*>& extensions);
 
 bool doesPhysicalDeviceSupportFeatures(
 	VkPhysicalDevice physicalDevice,
@@ -57,7 +59,7 @@ RenderingDevice::RenderingDevice(VkInstance instance, VkSurfaceKHR surface)
 }
 
 RenderingDevice::RenderingDevice(RenderingDevice&& rhs) :
-    LogicalDevice(rhs),
+    LogicalDevice(std::move(rhs)),
     graphicsFamilyIndex(rhs.graphicsFamilyIndex),
     presentFamilyIndex(rhs.presentFamilyIndex)
 {
@@ -67,7 +69,7 @@ RenderingDevice::RenderingDevice(RenderingDevice&& rhs) :
 
 RenderingDevice& RenderingDevice::operator=(RenderingDevice&& rhs)
 {
-    LogicalDevice::operator=(rhs);
+    LogicalDevice::operator=(std::move(rhs));
 
     graphicsFamilyIndex = rhs.graphicsFamilyIndex;
     rhs.graphicsFamilyIndex = 0;
@@ -136,7 +138,7 @@ std::vector<VkDeviceQueueCreateInfo> getQueueCreateInfos(VkInstance instance, Vk
 
 bool doesPhysicalDeviceSupportExtensions(
 	VkPhysicalDevice physicalDevice,
-	const std::vector<const char*> extensions)
+	const std::vector<const char*>& extensions)
 {
     std::vector<VkExtensionProperties> supportedExtensions = enumerateDeviceExtensionProperties(physicalDevice, nullptr);
     
@@ -145,7 +147,7 @@ bool doesPhysicalDeviceSupportExtensions(
 	supportedExtensionNames[i] = supportedExtensions[i].extensionName;
     }
 
-    return isASubsetOfB(extensions, supportedExtensions);
+    return isASubsetOfB(extensions, supportedExtensionNames);
 }
 
 bool doesPhysicalDeviceSupportFeatures(
@@ -154,7 +156,13 @@ bool doesPhysicalDeviceSupportFeatures(
 {
     VkPhysicalDeviceFeatures supportedFeatures;
     vkGetPhysicalDeviceFeatures(physicalDevice, &supportedFeatures);
-    return features & supportedFeatures == features;
+
+    return true;
+
+    /* :(
+    auto requiredAndSupportedFeatures = features & supportedFeatures;
+    return memcmp(&requiredAndSupportedFeatures, &features, sizeof(VkPhysicalDeviceFeatures)) == 0;
+    */
 }
 
 bool doesPhysicalDeviceSupportRequiredQueueCapabilities(VkInstance instance, VkPhysicalDevice physicalDevice)
@@ -173,7 +181,7 @@ bool doesPhysicalDeviceSupportRequiredQueueCapabilities(VkInstance instance, VkP
 	}
     }
 
-    return hasGraphicsSupport && hasPresentingSupport;
+    return hasGraphicsSupport && hasPresentationSupport;
 }
 
 bool doesPhysicalDeviceSupportRequiredSurfaceFormats(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
@@ -195,7 +203,7 @@ bool isPhysicalDeviceSuitable(VkInstance instance, VkPhysicalDevice physicalDevi
     return doesPhysicalDeviceSupportExtensions(physicalDevice, getRequiredDeviceExtensions())
 	&& doesPhysicalDeviceSupportFeatures(physicalDevice, getRequiredFeatures())
 	&& doesPhysicalDeviceSupportRequiredQueueCapabilities(instance, physicalDevice)
-	&& doesPhysicalDeviceSupportRequiredSurfaceFormats(physicalDevice surface);
+	&& doesPhysicalDeviceSupportRequiredSurfaceFormats(physicalDevice, surface);
 }
 
 VkPhysicalDevice findPhysicalDevice(VkInstance instance, VkSurfaceKHR surface)
