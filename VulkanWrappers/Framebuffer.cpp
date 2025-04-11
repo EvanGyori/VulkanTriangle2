@@ -7,7 +7,8 @@ Framebuffer::Framebuffer(VkDevice device, const VkFramebufferCreateInfo& createI
 
 Framebuffer::~Framebuffer()
 {
-    vkDestroyFramebuffer(device, handle, nullptr);
+    if (device != VK_NULL_HANDLE)
+	vkDestroyFramebuffer(device, handle, nullptr);
 }
 
 Framebuffer::Framebuffer(Framebuffer&& rhs) :
@@ -19,7 +20,8 @@ Framebuffer::Framebuffer(Framebuffer&& rhs) :
 
 Framebuffer& Framebuffer::operator=(Framebuffer&& rhs)
 {
-    vkDestroyFramebuffer(device, handle, nullptr);
+    if (device != VK_NULL_HANDLE)
+	vkDestroyFramebuffer(device, handle, nullptr);
 
     device = rhs.device;
     handle = rhs.handle;
@@ -32,4 +34,10 @@ Framebuffer& Framebuffer::operator=(Framebuffer&& rhs)
 VkFramebuffer Framebuffer::getHandle()
 {
     return handle;
+}
+
+Framebuffer::Framebuffer() :
+    device(VK_NULL_HANDLE),
+    handle(VK_NULL_HANDLE)
+{
 }

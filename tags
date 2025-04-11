@@ -48,6 +48,7 @@ Fence	./VulkanWrappers/Fence.cpp	/^Fence::Fence(Fence&& rhs) :$/;"	f	class:Fence
 Fence	./VulkanWrappers/Fence.cpp	/^Fence::Fence(VkDevice device, const VkFenceCreateInfo& createInfo)$/;"	f	class:Fence
 Fence	./VulkanWrappers/Fence.h	/^class Fence$/;"	c
 Framebuffer	./VulkanWrappers/Framebuffer.h	/^class Framebuffer$/;"	c
+Framebuffer	VulkanWrappers/Framebuffer.cpp	/^Framebuffer::Framebuffer() :$/;"	f	class:Framebuffer
 Framebuffer	VulkanWrappers/Framebuffer.cpp	/^Framebuffer::Framebuffer(Framebuffer&& rhs) :$/;"	f	class:Framebuffer
 Framebuffer	VulkanWrappers/Framebuffer.cpp	/^Framebuffer::Framebuffer(Framebuffer&& rhs)$/;"	f	class:Framebuffer
 Framebuffer	VulkanWrappers/Framebuffer.cpp	/^Framebuffer::Framebuffer(VkDevice device, const VkFramebufferCreateInfo& createInfo)$/;"	f	class:Framebuffer
@@ -71,9 +72,15 @@ RenderPass	./VulkanWrappers/RenderPass.cpp	/^RenderPass::RenderPass(RenderPass&&
 RenderPass	./VulkanWrappers/RenderPass.cpp	/^RenderPass::RenderPass(VkDevice device, const VkRenderPassCreateInfo& createInfo)$/;"	f	class:RenderPass
 RenderPass	./VulkanWrappers/RenderPass.h	/^class RenderPass$/;"	c
 Rendering	./Rendering/CMakeLists.txt	/^add_library(Rendering InstanceHelpers.cpp RenderingDevice.cpp ImageViewHelpers.cpp RenderPassHel/;"	t
+Rendering	Rendering/CMakeLists.txt	/^add_library(Rendering InstanceHelpers.cpp RenderingDevice.cpp ImageViewHelpers.cpp RenderPassHel/;"	t
 RenderingDevice	./Rendering/RenderingDevice.cpp	/^RenderingDevice::RenderingDevice(RenderingDevice&& rhs) :$/;"	f	class:RenderingDevice
 RenderingDevice	./Rendering/RenderingDevice.cpp	/^RenderingDevice::RenderingDevice(VkInstance instance, VkSurfaceKHR surface)$/;"	f	class:RenderingDevice
 RenderingDevice	./Rendering/RenderingDevice.h	/^class RenderingDevice : public LogicalDevice$/;"	c
+RenderingFramebuffer	Rendering/RenderingFramebuffer.cpp	/^RenderingFramebuffer::RenderingFramebuffer(RenderingFramebuffer&& rhs) :$/;"	f	class:RenderingFramebuffer
+RenderingFramebuffer	Rendering/RenderingFramebuffer.cpp	/^RenderingFramebuffer::RenderingFramebuffer(RenderingFramebuffer&& rhs)$/;"	f	class:RenderingFramebuffer
+RenderingFramebuffer	Rendering/RenderingFramebuffer.cpp	/^RenderingFramebuffer::RenderingFramebuffer(VkDevice device, VkRenderPass renderPass, GLFWwindow*/;"	f	class:RenderingFramebuffer
+RenderingFramebuffer	Rendering/RenderingFramebuffer.cpp	/^RenderingFramebuffer::RenderingFramebuffer(VkDevice device, VkRenderPass renderPass, VkImage out/;"	f	class:RenderingFramebuffer
+RenderingFramebuffer	Rendering/RenderingFramebuffer.h	/^class RenderingFramebuffer : public Framebuffer$/;"	c
 Semaphore	./VulkanWrappers/Semaphore.cpp	/^Semaphore::Semaphore(Semaphore&& rhs) :$/;"	f	class:Semaphore
 Semaphore	./VulkanWrappers/Semaphore.cpp	/^Semaphore::Semaphore(VkDevice device, const VkSemaphoreCreateInfo& createInfo) :$/;"	f	class:Semaphore
 Semaphore	./VulkanWrappers/Semaphore.h	/^class Semaphore$/;"	c
@@ -162,7 +169,10 @@ operator =	./VulkanWrappers/Instance.cpp	/^Instance& Instance::operator=(Instanc
 operator =	./VulkanWrappers/LogicalDevice.cpp	/^LogicalDevice& LogicalDevice::operator=(LogicalDevice&& rhs)$/;"	f	class:LogicalDevice	typeref:typename:LogicalDevice &
 operator =	./VulkanWrappers/RenderPass.cpp	/^RenderPass& RenderPass::operator=(RenderPass&& rhs)$/;"	f	class:RenderPass	typeref:typename:RenderPass &
 operator =	./VulkanWrappers/Semaphore.cpp	/^Semaphore& Semaphore::operator=(Semaphore&& rhs)$/;"	f	class:Semaphore	typeref:typename:Semaphore &
+operator =	Rendering/RenderingFramebuffer.cpp	/^RenderingFramebuffer& RenderingFramebuffer::operator=(RenderingFramebuffer&& rhs)$/;"	f	class:RenderingFramebuffer	typeref:typename:RenderingFramebuffer &
 operator =	VulkanWrappers/Framebuffer.cpp	/^Framebuffer& Framebuffer::operator=(Framebuffer&& rhs)$/;"	f	class:Framebuffer	typeref:typename:Framebuffer &
+outputImage	Rendering/RenderingFramebuffer.h	/^    ImageView outputImage;$/;"	m	class:RenderingFramebuffer	typeref:typename:ImageView
+outputImageView	Rendering/RenderingFramebuffer.h	/^    ImageView outputImageView;$/;"	m	class:RenderingFramebuffer	typeref:typename:ImageView
 physicalDevice	./VulkanWrappers/LogicalDevice.h	/^    VkPhysicalDevice physicalDevice;$/;"	m	class:LogicalDevice	typeref:typename:VkPhysicalDevice
 presentFamilyIndex	./Rendering/RenderingDevice.h	/^    size_t graphicsFamilyIndex, presentFamilyIndex;$/;"	m	class:RenderingDevice	typeref:typename:size_t
 queueFamilies	./VulkanWrappers/LogicalDevice.h	/^    std::vector<QueueFamily> queueFamilies;$/;"	m	class:LogicalDevice	typeref:typename:std::vector<QueueFamily>

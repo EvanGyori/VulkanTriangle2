@@ -17,6 +17,9 @@ public:
 
     VkFramebuffer getHandle();
 
+protected:
+    Framebuffer();
+
 private:
     VkDevice device;
     VkFramebuffer handle;
