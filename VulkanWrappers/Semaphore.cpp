@@ -15,7 +15,6 @@ Semaphore::Semaphore(Semaphore&& rhs) :
     device(rhs.device),
     handle(rhs.handle)
 {
-    rhs.device = VK_NULL_HANDLE;
     rhs.handle = VK_NULL_HANDLE;
 }
 
@@ -24,7 +23,6 @@ Semaphore& Semaphore::operator=(Semaphore&& rhs)
     vkDestroySemaphore(device, handle, nullptr);
 
     device = rhs.device;
-    rhs.device = VK_NULL_HANDLE;
 
     handle = rhs.handle;
     rhs.handle = VK_NULL_HANDLE;

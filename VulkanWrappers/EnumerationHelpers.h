@@ -58,3 +58,13 @@ inline std::vector<VkExtensionProperties> enumerateDeviceExtensionProperties(
 	    return vkEnumerateDeviceExtensionProperties(physicalDevice, pLayerName, count, elements);
 	});
 }
+
+inline std::vector<VkSurfaceFormatKHR> getPhysicalDeviceSurfaceFormatsKHR(
+	VkPhysicalDevice physicalDevice,
+	VkSurfaceKHR surface)
+{
+    return
+	enumerateArray<VkSurfaceFormatKHR>([physicalDevice, surface](uint32_t* count, VkSurfaceFormatKHR* elements) {
+	    return vkGetPhysicalDeviceSurfaceFormatsKHR(physicalDevice, surface, count, elements);
+	});
+}

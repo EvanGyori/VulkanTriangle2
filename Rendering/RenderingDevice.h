@@ -5,7 +5,7 @@
 class RenderingDevice : public LogicalDevice
 {
 public:
-    RenderingDevice(VkInstance instance);
+    RenderingDevice(VkInstance instance, VkSurfaceKHR surface);
 
     RenderingDevice(RenderingDevice&& rhs);
     RenderingDevice& operator=(RenderingDevice&& rhs);

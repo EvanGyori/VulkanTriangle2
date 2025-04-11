@@ -27,15 +27,20 @@ bool doesPhysicalDeviceSupportRequiredQueueCapabilities(
 	VkInstance instance,
 	VkPhysicalDevice physicalDevice);
 
+bool doesPhysicalDeviceSupportRequiredSurfaceFormats(
+	VkPhysicalDevice physicalDevice,
+	VkSurfaceKHR surface);
+
 bool isPhysicalDeviceSuitable(
 	VkInstance instance,
-	VkPhysicalDevice physicalDevice);
+	VkPhysicalDevice physicalDevice,
+	VkSurfaceKHR surface);
 
-VkPhysicalDevice findPhysicalDevice(VkInstance instance);
+VkPhysicalDevice findPhysicalDevice(VkInstance instance, VkSurfaceKHR surface);
 
-RenderingDevice::RenderingDevice(VkInstance instance)
+RenderingDevice::RenderingDevice(VkInstance instance, VkSurfaceKHR surface)
 {
-    VkPhysicalDevice physicalDevice = findPhysicalDevice(instance);
+    VkPhysicalDevice physicalDevice = findPhysicalDevice(instance, surface);
     auto queueCreateInfos = getQueueCreateInfos(instance, physicalDevice);
     auto extensions = getRequiredDeviceExtensions();
     auto features = getRequiredFeatures();
@@ -171,19 +176,34 @@ bool doesPhysicalDeviceSupportRequiredQueueCapabilities(VkInstance instance, VkP
     return hasGraphicsSupport && hasPresentingSupport;
 }
 
-bool isPhysicalDeviceSuitable(VkInstance instance, VkPhysicalDevice physicalDevice)
+bool doesPhysicalDeviceSupportRequiredSurfaceFormats(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
+{
+    std::vector<VkSurfaceFormatKHR> supportedFormats = getPhysicalDeviceSurfaceFormatsKHR(physicalDevice, surface);
+
+    for (auto format : supportedFormats) {
+	if (format.format == VK_FORMAT_R8G8B8A8_SRGB
+	    && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR) {
+	    return true;
+	}
+    }
+
+    return false;
+}
+
+bool isPhysicalDeviceSuitable(VkInstance instance, VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
 {
     return doesPhysicalDeviceSupportExtensions(physicalDevice, getRequiredDeviceExtensions())
 	&& doesPhysicalDeviceSupportFeatures(physicalDevice, getRequiredFeatures())
-	&& doesPhysicalDeviceSupportRequiredQueueCapabilities(instance, physicalDevice);
+	&& doesPhysicalDeviceSupportRequiredQueueCapabilities(instance, physicalDevice)
+	&& doesPhysicalDeviceSupportRequiredSurfaceFormats(physicalDevice surface);
 }
 
-VkPhysicalDevice findPhysicalDevice(VkInstance instance)
+VkPhysicalDevice findPhysicalDevice(VkInstance instance, VkSurfaceKHR surface)
 {
     std::vector<VkPhysicalDevice> physicalDevices = enumeratePhysicalDevices(instance);
 
     for (auto physicalDevice : physicalDevices) {
-	if (isPhysicalDeviceSuitable(instance, physicalDevice)) {
+	if (isPhysicalDeviceSuitable(instance, physicalDevice, surface)) {
 	    return physicalDevice;
 	}
     }
