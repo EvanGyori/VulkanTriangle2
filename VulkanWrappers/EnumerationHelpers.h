@@ -68,3 +68,13 @@ inline std::vector<VkSurfaceFormatKHR> getPhysicalDeviceSurfaceFormatsKHR(
 	    return vkGetPhysicalDeviceSurfaceFormatsKHR(physicalDevice, surface, count, elements);
 	});
 }
+
+inline std::vector<VkImage> getSwapchainImagesKHR(
+	VkDevice device,
+	VkSwapchainKHR swapchain)
+{
+    return
+	enumerateArray<VkImage>([device, swapchain](uint32_t* count, VkImage* elements) {
+	    return vkGetSwapchainImagesKHR(device, swapchain, count, elements);
+	});
+}

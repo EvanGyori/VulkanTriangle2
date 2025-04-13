@@ -80,14 +80,14 @@ RenderingDevice& RenderingDevice::operator=(RenderingDevice&& rhs)
     return *this;
 }
 
-VkQueue RenderingDevice::getGraphicsQueue()
+const QueueFamily& RenderingDevice::getGraphicsQueueFamily()
 {
-    return getQueueFamily(graphicsFamilyIndex).queues[0];
+    return getQueueFamily(graphicsFamilyIndex);
 }
 
-VkQueue RenderingDevice::getPresentQueue()
+const QueueFamily& RenderingDevice::getPresentQueueFamily()
 {
-    return getQueueFamily(presentFamilyIndex).queues[0];
+    return getQueueFamily(presentFamilyIndex);
 }
 
 std::vector<const char*> getRequiredDeviceExtensions()

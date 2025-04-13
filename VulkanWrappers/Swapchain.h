@@ -17,6 +17,9 @@ public:
 
     VkSwapchainKHR getHandle();
 
+protected:
+    Swapchain();
+
 private:
     VkDevice device;
     VkSwapchainKHR handle;

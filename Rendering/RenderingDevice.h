@@ -10,8 +10,8 @@ public:
     RenderingDevice(RenderingDevice&& rhs);
     RenderingDevice& operator=(RenderingDevice&& rhs);
 
-    VkQueue getGraphicsQueue();
-    VkQueue getPresentQueue();
+    const QueueFamily& getGraphicsQueueFamily();
+    const QueueFamily& getPresentQueueFamily();
 
 private:
     // indices within the queueFamilies array in LogicalDevice

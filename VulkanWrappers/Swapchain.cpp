@@ -8,7 +8,8 @@ Swapchain::Swapchain(VkDevice device, const VkSwapchainCreateInfoKHR& createInfo
 
 Swapchain::~Swapchain()
 {
-    vkDestroySwapchainKHR(device, handle, nullptr);
+    if (device != VK_NULL_HANDLE)
+	vkDestroySwapchainKHR(device, handle, nullptr);
 }
 
 Swapchain::Swapchain(Swapchain&& rhs) :
@@ -20,7 +21,8 @@ Swapchain::Swapchain(Swapchain&& rhs) :
 
 Swapchain& Swapchain::operator=(Swapchain&& rhs)
 {
-    vkDestroySwapchainKHR(device, handle, nullptr);
+    if (device != VK_NULL_HANDLE)
+	vkDestroySwapchainKHR(device, handle, nullptr);
 
     device = rhs.device;
     handle = rhs.handle;
@@ -33,4 +35,10 @@ Swapchain& Swapchain::operator=(Swapchain&& rhs)
 VkSwapchainKHR Swapchain::getHandle()
 {
     return handle;
+}
+
+Swapchain::Swapchain() :
+    device(VK_NULL_HANDLE),
+    handle(VK_NULL_HANDLE)
+{
 }
