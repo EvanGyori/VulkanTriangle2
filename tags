@@ -65,6 +65,10 @@ LogicalDevice	./VulkanWrappers/LogicalDevice.cpp	/^LogicalDevice::LogicalDevice(
 LogicalDevice	./VulkanWrappers/LogicalDevice.cpp	/^LogicalDevice::LogicalDevice(LogicalDevice&& rhs) :$/;"	f	class:LogicalDevice
 LogicalDevice	./VulkanWrappers/LogicalDevice.cpp	/^LogicalDevice::LogicalDevice(VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo& createIn/;"	f	class:LogicalDevice
 LogicalDevice	./VulkanWrappers/LogicalDevice.h	/^class LogicalDevice$/;"	c
+Pipeline	VulkanWrappers/Pipeline.cpp	/^Pipeline::Pipeline($/;"	f	class:Pipeline
+Pipeline	VulkanWrappers/Pipeline.cpp	/^Pipeline::Pipeline(Pipeline&& rhs) :$/;"	f	class:Pipeline
+Pipeline	VulkanWrappers/Pipeline.cpp	/^Pipeline::Pipeline(Pipeline&& rhs)$/;"	f	class:Pipeline
+Pipeline	VulkanWrappers/Pipeline.h	/^class Pipeline$/;"	c
 PipelineLayout	VulkanWrappers/PipelineLayout.cpp	/^PipelineLayout::PipelineLayout($/;"	f	class:PipelineLayout
 PipelineLayout	VulkanWrappers/PipelineLayout.cpp	/^PipelineLayout::PipelineLayout(PipelineLayout&& rhs) :$/;"	f	class:PipelineLayout
 PipelineLayout	VulkanWrappers/PipelineLayout.h	/^class PipelineLayout$/;"	c
@@ -122,6 +126,7 @@ device	./VulkanWrappers/ImageView.h	/^    VkDevice device;$/;"	m	class:ImageView
 device	./VulkanWrappers/RenderPass.h	/^    VkDevice device;$/;"	m	class:RenderPass	typeref:typename:VkDevice
 device	./VulkanWrappers/Semaphore.h	/^    VkDevice device;$/;"	m	class:Semaphore	typeref:typename:VkDevice
 device	./VulkanWrappers/Swapchain.h	/^    VkDevice device;$/;"	m	class:Swapchain	typeref:typename:VkDevice
+device	VulkanWrappers/Pipeline.h	/^    VkDevice device;$/;"	m	class:Pipeline	typeref:typename:VkDevice
 device	VulkanWrappers/PipelineLayout.h	/^    VkDevice device;$/;"	m	class:PipelineLayout	typeref:typename:VkDevice
 doesPhysicalDeviceSupportExtensions	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportExtensions($/;"	f	typeref:typename:bool
 doesPhysicalDeviceSupportFeatures	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportFeatures($/;"	f	typeref:typename:bool
@@ -149,6 +154,7 @@ getHandle	./VulkanWrappers/RenderPass.cpp	/^VkRenderPass RenderPass::getHandle()
 getHandle	./VulkanWrappers/Semaphore.cpp	/^VkSemaphore Semaphore::getHandle()$/;"	f	class:Semaphore	typeref:typename:VkSemaphore
 getHandle	./VulkanWrappers/Surface.cpp	/^VkSurfaceKHR Surface::getHandle()$/;"	f	class:Surface	typeref:typename:VkSurfaceKHR
 getHandle	./VulkanWrappers/Swapchain.cpp	/^VkSwapchainKHR Swapchain::getHandle()$/;"	f	class:Swapchain	typeref:typename:VkSwapchainKHR
+getHandle	VulkanWrappers/Pipeline.cpp	/^VkPipeline Pipeline::getHandle()$/;"	f	class:Pipeline	typeref:typename:VkPipeline
 getHandle	VulkanWrappers/PipelineLayout.cpp	/^VkPipelineLayout PipelineLayout::getHandle()$/;"	f	class:PipelineLayout	typeref:typename:VkPipelineLayout
 getImageExtent	./Rendering/RenderingSwapchain.cpp	/^VkExtent2D getImageExtent(VkSurfaceCapabilitiesKHR surfaceCapabilities, GLFWwindow* window)$/;"	f	typeref:typename:VkExtent2D
 getMinImageCount	./Rendering/RenderingSwapchain.cpp	/^uint32_t getMinImageCount(VkSurfaceCapabilitiesKHR surfaceCapabilities)$/;"	f	typeref:typename:uint32_t
@@ -178,6 +184,7 @@ handle	./VulkanWrappers/RenderPass.h	/^    VkRenderPass handle;$/;"	m	class:Rend
 handle	./VulkanWrappers/Semaphore.h	/^    VkSemaphore handle;$/;"	m	class:Semaphore	typeref:typename:VkSemaphore
 handle	./VulkanWrappers/Surface.h	/^    VkSurfaceKHR handle;$/;"	m	class:Surface	typeref:typename:VkSurfaceKHR
 handle	./VulkanWrappers/Swapchain.h	/^    VkSwapchainKHR handle;$/;"	m	class:Swapchain	typeref:typename:VkSwapchainKHR
+handle	VulkanWrappers/Pipeline.h	/^    VkPipeline handle;$/;"	m	class:Pipeline	typeref:typename:VkPipeline
 handle	VulkanWrappers/PipelineLayout.h	/^    VkPipelineLayout handle;$/;"	m	class:PipelineLayout	typeref:typename:VkPipelineLayout
 initVulkanAndGLFW	./GLFWwrappers/GLFWmanager.cpp	/^void GLFWmanager::initVulkanAndGLFW()$/;"	f	class:GLFWmanager	typeref:typename:void
 instance	./GLFWwrappers/GLFWmanager.cpp	/^GLFWmanager* GLFWmanager::instance = nullptr;$/;"	m	class:GLFWmanager	typeref:typename:GLFWmanager *
@@ -198,6 +205,7 @@ operator =	./VulkanWrappers/RenderPass.cpp	/^RenderPass& RenderPass::operator=(R
 operator =	./VulkanWrappers/Semaphore.cpp	/^Semaphore& Semaphore::operator=(Semaphore&& rhs)$/;"	f	class:Semaphore	typeref:typename:Semaphore &
 operator =	./VulkanWrappers/Surface.cpp	/^Surface& Surface::operator=(Surface&& rhs)$/;"	f	class:Surface	typeref:typename:Surface &
 operator =	./VulkanWrappers/Swapchain.cpp	/^Swapchain& Swapchain::operator=(Swapchain&& rhs)$/;"	f	class:Swapchain	typeref:typename:Swapchain &
+operator =	VulkanWrappers/Pipeline.cpp	/^Pipeline& Pipeline::operator=(Pipeline&& rhs)$/;"	f	class:Pipeline	typeref:typename:Pipeline &
 operator =	VulkanWrappers/PipelineLayout.cpp	/^PipelineLayout& PipelineLayout::operator=(PipelineLayout&& rhs)$/;"	f	class:PipelineLayout	typeref:typename:PipelineLayout &
 outputImageView	./Rendering/RenderingFramebuffer.h	/^    ImageView outputImageView;$/;"	m	class:RenderingFramebuffer	typeref:typename:ImageView
 physicalDevice	./VulkanWrappers/LogicalDevice.h	/^    VkPhysicalDevice physicalDevice;$/;"	m	class:LogicalDevice	typeref:typename:VkPhysicalDevice
@@ -215,6 +223,7 @@ window	./GLFWwrappers/Window.h	/^    GLFWwindow* window;$/;"	m	class:Window	type
 ~ImageView	./VulkanWrappers/ImageView.cpp	/^ImageView::~ImageView()$/;"	f	class:ImageView
 ~Instance	./VulkanWrappers/Instance.cpp	/^Instance::~Instance()$/;"	f	class:Instance
 ~LogicalDevice	./VulkanWrappers/LogicalDevice.cpp	/^LogicalDevice::~LogicalDevice()$/;"	f	class:LogicalDevice
+~Pipeline	VulkanWrappers/Pipeline.cpp	/^Pipeline::~Pipeline()$/;"	f	class:Pipeline
 ~PipelineLayout	VulkanWrappers/PipelineLayout.cpp	/^PipelineLayout::~PipelineLayout()$/;"	f	class:PipelineLayout
 ~RenderPass	./VulkanWrappers/RenderPass.cpp	/^RenderPass::~RenderPass()$/;"	f	class:RenderPass
 ~Semaphore	./VulkanWrappers/Semaphore.cpp	/^Semaphore::~Semaphore()$/;"	f	class:Semaphore
