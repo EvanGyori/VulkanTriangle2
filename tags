@@ -293,6 +293,7 @@ setupFramebuffers	Rendering/RenderingSwapchain.cpp	/^void RenderingSwapchain::se
 surface	./Rendering/RenderingSwapchain.h	/^    Surface surface;$/;"	m	class:RenderingSwapchain	typeref:typename:Surface
 swapchain	Rendering/RenderingManager.h	/^    RenderingSwapchain swapchain;$/;"	m	class:RenderingManager	typeref:typename:RenderingSwapchain
 vec3	./Rendering/Vertex.h	/^struct vec3$/;"	s
+vertices	main.cpp	/^static Vertex vertices[] = {$/;"	v	typeref:typename:Vertex[]	file:
 window	./GLFWwrappers/Window.h	/^    GLFWwindow* window;$/;"	m	class:Window	typeref:typename:GLFWwindow *
 window	Rendering/RenderingManager.h	/^    Window window;$/;"	m	class:RenderingManager	typeref:typename:Window
 windowSurface	Rendering/RenderingManager.h	/^    Surface windowSurface;$/;"	m	class:RenderingManager	typeref:typename:Surface
