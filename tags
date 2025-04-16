@@ -122,6 +122,7 @@ VK_CHECK	./GLFWwrappers/VulkanWithGLFW.h	/^#define VK_CHECK(/;"	d
 Vertex	./Rendering/Vertex.h	/^struct Vertex$/;"	s
 VulkanTriangle	./CMakeLists.txt	/^project(VulkanTriangle)$/;"	p
 VulkanWrappers	./VulkanWrappers/CMakeLists.txt	/^add_library(VulkanWrappers Instance.cpp LogicalDevice.cpp RenderPass.cpp Fence.cpp Semaphore.cpp/;"	t
+VulkanWrappers	VulkanWrappers/CMakeLists.txt	/^add_library(VulkanWrappers Instance.cpp LogicalDevice.cpp RenderPass.cpp Fence.cpp Semaphore.cpp/;"	t
 Window	./GLFWwrappers/Window.cpp	/^Window::Window()$/;"	f	class:Window
 Window	./GLFWwrappers/Window.h	/^class Window$/;"	c
 __anone99712860102	./VulkanWrappers/EnumerationHelpers.h	/^	enumerateArray<VkLayerProperties>([](uint32_t* count, VkLayerProperties* elements) {$/;"	f	function:enumerateInstanceLayerProperties	file:
@@ -141,6 +142,7 @@ createBinarySemaphore	./Rendering/SynchronizationHelpers.cpp	/^Semaphore createB
 createEmptyPipelineLayout	Rendering/GraphicsPipelineHelpers.cpp	/^PipelineLayout createEmptyPipelineLayout()$/;"	f	typeref:typename:PipelineLayout
 createEmptyPipelineLayout	Rendering/GraphicsPipelineHelpers.cpp	/^PipelineLayout createEmptyPipelineLayout(VkDevice device)$/;"	f	typeref:typename:PipelineLayout
 createFence	./Rendering/SynchronizationHelpers.cpp	/^Fence createFence(VkDevice device)$/;"	f	typeref:typename:Fence
+createRenderingCommandPool	Rendering/CommandPoolHelpers.cpp	/^CommandPool createRenderingCommandPool(VkDevice device, uint32_t graphicsQueueFamilyIndex)$/;"	f	typeref:typename:CommandPool
 createRenderingImageView	./Rendering/ImageViewHelpers.cpp	/^ImageView createRenderingImageView(VkDevice device, VkImage image)$/;"	f	typeref:typename:ImageView
 createRenderingInstance	./Rendering/InstanceHelpers.cpp	/^Instance createRenderingInstance()$/;"	f	typeref:typename:Instance
 createRenderingPipeline	./Rendering/GraphicsPipelineHelpers.cpp	/^Pipeline createRenderingPipeline(VkDevice device, VkRenderPass renderPass, VkPipelineLayout layo/;"	f	typeref:typename:Pipeline
