@@ -10,3 +10,5 @@ T clamp(T x, T min, T max)
 {
     return std::max(std::min(x, max), min);
 }
+
+std::vector<char> getFileData(const char* filename);

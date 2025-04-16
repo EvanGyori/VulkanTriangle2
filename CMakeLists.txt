@@ -8,3 +8,15 @@ add_subdirectory(Rendering)
 
 add_executable(vulkanTriangle main.cpp)
 target_link_libraries(vulkanTriangle PRIVATE Rendering)
+
+add_custom_command(TARGET vulkanTriangle POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    "${CMAKE_SOURCE_DIR}/Shaders/vert.spv"
+    "$<TARGET_FILE_DIR:vulkanTriangle>/vert.spv"
+)
+
+add_custom_command(TARGET vulkanTriangle POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    "${CMAKE_SOURCE_DIR}/Shaders/frag.spv"
+    "$<TARGET_FILE_DIR:vulkanTriangle>/frag.spv"
+)
