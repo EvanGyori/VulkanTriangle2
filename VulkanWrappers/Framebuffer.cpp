@@ -1,6 +1,7 @@
 #include "Framebuffer.h"
 
-Framebuffer::Framebuffer(VkDevice device, const VkFramebufferCreateInfo& createInfo)
+Framebuffer::Framebuffer(VkDevice device, const VkFramebufferCreateInfo& createInfo) :
+    device(device)
 {
     VK_CHECK(vkCreateFramebuffer(device, &createInfo, nullptr, &handle));
 }

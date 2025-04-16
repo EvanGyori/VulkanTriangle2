@@ -1,6 +1,7 @@
 #include "Fence.h"
 
-Fence::Fence(VkDevice device, const VkFenceCreateInfo& createInfo)
+Fence::Fence(VkDevice device, const VkFenceCreateInfo& createInfo) :
+    device(device)
 {
     VK_CHECK(vkCreateFence(device, &createInfo, nullptr, &handle));
 }

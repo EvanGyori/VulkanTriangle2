@@ -1,6 +1,7 @@
 #include "RenderPass.h"
 
-RenderPass::RenderPass(VkDevice device, const VkRenderPassCreateInfo& createInfo)
+RenderPass::RenderPass(VkDevice device, const VkRenderPassCreateInfo& createInfo) :
+    device(device)
 {
     VK_CHECK(vkCreateRenderPass(device, &createInfo, nullptr, &handle));
 }

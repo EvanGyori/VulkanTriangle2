@@ -1,7 +1,8 @@
 #include "ImageView.h"
 
 
-ImageView::ImageView(VkDevice device, const VkImageViewCreateInfo& createInfo)
+ImageView::ImageView(VkDevice device, const VkImageViewCreateInfo& createInfo) :
+    device(device)
 {
     VK_CHECK(vkCreateImageView(device, &createInfo, nullptr, &handle));
 }
