@@ -4,12 +4,16 @@
 
 std::vector<VkAttachmentDescription> getAttachmentDescriptions();
 
-std::vector<VkSubpassDescription> getSubpassDescriptions();
+VkAttachmentReference getOutputReference();
+
+std::vector<VkSubpassDescription> getSubpassDescriptions(const VkAttachmentReference& outputReference);
 
 RenderPass createRenderingRenderPass(VkDevice device)
 {
     auto attachmentDescriptions = getAttachmentDescriptions();
-    auto subpassDescriptions = getSubpassDescriptions();
+
+    auto outputReference = getOutputReference();
+    auto subpassDescriptions = getSubpassDescriptions(outputReference);
 
     VkRenderPassCreateInfo createInfo = {};
     createInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
@@ -34,12 +38,17 @@ std::vector<VkAttachmentDescription> getAttachmentDescriptions()
     return { output };
 }
 
-std::vector<VkSubpassDescription> getSubpassDescriptions()
+VkAttachmentReference getOutputReference()
 {
     VkAttachmentReference outputReference;
     outputReference.attachment = 0;
     outputReference.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
 
+    return outputReference;
+}
+
+std::vector<VkSubpassDescription> getSubpassDescriptions(const VkAttachmentReference& outputReference)
+{
     VkSubpassDescription subpass = {};
     subpass.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
     subpass.colorAttachmentCount = 1;

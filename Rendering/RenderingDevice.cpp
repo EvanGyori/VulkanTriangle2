@@ -55,6 +55,13 @@ RenderingDevice::RenderingDevice(VkInstance instance, VkSurfaceKHR surface)
     createInfo.ppEnabledExtensionNames = &extensions.front();
     createInfo.pEnabledFeatures = &features;
 
+    graphicsFamilyIndex = 0;
+    if (queueCreateInfos.size() > 1) {
+	presentFamilyIndex = 1;
+    } else {
+	presentFamilyIndex = 0;
+    }
+
     LogicalDevice::operator=(LogicalDevice(physicalDevice, createInfo));
 }
 

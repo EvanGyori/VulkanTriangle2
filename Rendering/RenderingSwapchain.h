@@ -12,6 +12,7 @@ class RenderingSwapchain : Swapchain
 public:
     RenderingSwapchain(
 	    VkInstance instance,
+	    VkSurfaceKHR surface,
 	    RenderingDevice& device,
 	    VkRenderPass renderPass,
 	    GLFWwindow* window);
@@ -23,7 +24,6 @@ public:
     const RenderingFramebuffer& getFramebuffer(uint32_t imageIndex);
 
 private:
-    Surface surface;
     std::vector<RenderingFramebuffer> framebuffers;
 
     void setupFramebuffers(VkDevice device, VkRenderPass renderPass, GLFWwindow* window);

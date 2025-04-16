@@ -1,6 +1,9 @@
 #pragma once
 
+#include "PipelineLayout.h"
 #include "Pipeline.h"
+
+PipelineLayout createEmptyPipelineLayout(VkDevice device);
 
 Pipeline createRenderingPipeline(
 	VkDevice device,

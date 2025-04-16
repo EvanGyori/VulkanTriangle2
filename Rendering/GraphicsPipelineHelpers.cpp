@@ -43,6 +43,14 @@ VkPipelineColorBlendAttachmentState getColorBlendAttachmentInfo();
 VkPipelineColorBlendStateCreateInfo getColorBlendInfo(
 	const VkPipelineColorBlendAttachmentState& colorBlendAttachmentInfo);
 
+PipelineLayout createEmptyPipelineLayout(VkDevice device)
+{
+    VkPipelineLayoutCreateInfo createInfo = {};
+    createInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
+
+    return PipelineLayout(device, createInfo);
+}
+
 Pipeline createRenderingPipeline(
 	VkDevice device,
 	VkRenderPass renderPass,

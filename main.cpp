@@ -1,19 +1,12 @@
-#include "Window.h"
-#include "InstanceHelpers.h"
-
 #include <stdexcept>
 #include <iostream>
+
+#include "RenderingManager.h"
 
 int main()
 {
     try {
-	Window window;
-
-	Instance instance = createRenderingInstance();
-
-	while (!glfwWindowShouldClose(window.getHandle())) {
-	    glfwPollEvents();
-	}
+	RenderingManager manager;
     } catch (std::runtime_error error) {
 	std::cout << error.what() << std::endl;
     }

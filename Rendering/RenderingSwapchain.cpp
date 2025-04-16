@@ -15,17 +15,17 @@ VkCompositeAlphaFlagBitsKHR getCompositeAlpha(VkSurfaceCapabilitiesKHR surfaceCa
 
 RenderingSwapchain::RenderingSwapchain(
 	VkInstance instance,
+	VkSurfaceKHR surface,
 	RenderingDevice& device,
 	VkRenderPass renderPass,
-	GLFWwindow* window) :
-    surface(Surface(instance, window))
+	GLFWwindow* window)
 {
     VkSurfaceCapabilitiesKHR surfaceCapabilities;
-    VK_CHECK(vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device.getPhysicalDevice(), surface.getHandle(), &surfaceCapabilities));
+    VK_CHECK(vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device.getPhysicalDevice(), surface, &surfaceCapabilities));
 
     VkSwapchainCreateInfoKHR createInfo = {};
     createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
-    createInfo.surface = surface.getHandle();
+    createInfo.surface = surface;
     createInfo.minImageCount = getMinImageCount(surfaceCapabilities);
 
     // RenderingDevice only picks a physical device with these supported format and colorSpace
@@ -60,14 +60,12 @@ RenderingSwapchain::RenderingSwapchain(
 
 RenderingSwapchain::RenderingSwapchain(RenderingSwapchain&& rhs) :
     Swapchain(std::move(rhs)),
-    surface(std::move(rhs.surface)),
     framebuffers(std::move(rhs.framebuffers))
 {
 }
 
 RenderingSwapchain& RenderingSwapchain::operator=(RenderingSwapchain&& rhs)
 {
-    surface = std::move(rhs.surface);
     framebuffers = std::move(rhs.framebuffers);
 
     Swapchain::operator=(std::move(rhs));
