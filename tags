@@ -118,6 +118,11 @@ RenderingSwapchain	Rendering/RenderingSwapchain.h	/^class RenderingSwapchain : p
 Semaphore	./VulkanWrappers/Semaphore.cpp	/^Semaphore::Semaphore(Semaphore&& rhs) :$/;"	f	class:Semaphore
 Semaphore	./VulkanWrappers/Semaphore.cpp	/^Semaphore::Semaphore(VkDevice device, const VkSemaphoreCreateInfo& createInfo) :$/;"	f	class:Semaphore
 Semaphore	./VulkanWrappers/Semaphore.h	/^class Semaphore$/;"	c
+ShaderModule	VulkanWrappers/ShaderModule.cpp	/^ShaderModule::ShaderModule(ShaderModule&& rhs) :$/;"	f	class:ShaderModule
+ShaderModule	VulkanWrappers/ShaderModule.cpp	/^ShaderModule::ShaderModule(ShaderModule&& rhs)$/;"	f	class:ShaderModule
+ShaderModule	VulkanWrappers/ShaderModule.cpp	/^ShaderModule::ShaderModule(VkDevice device, const VkShaderModuleCreateInfo& createInfo) :$/;"	f	class:ShaderModule
+ShaderModule	VulkanWrappers/ShaderModule.cpp	/^ShaderModule::ShaderModule(VkDevice device, const VkShaderModuleCreateInfo& createInfo)$/;"	f	class:ShaderModule
+ShaderModule	VulkanWrappers/ShaderModule.h	/^class ShaderModule$/;"	c
 Surface	./VulkanWrappers/Surface.cpp	/^Surface::Surface(Surface&& rhs) :$/;"	f	class:Surface
 Surface	./VulkanWrappers/Surface.cpp	/^Surface::Surface(VkInstance instance, GLFWwindow* window) :$/;"	f	class:Surface
 Surface	./VulkanWrappers/Surface.h	/^class Surface$/;"	c
@@ -166,6 +171,8 @@ createRenderingPipeline	./Rendering/GraphicsPipelineHelpers.cpp	/^Pipeline creat
 createRenderingPipeline	Rendering/GraphicsPipelineHelpers.cpp	/^Pipeline createRenderingPipeline($/;"	f	typeref:typename:Pipeline
 createRenderingRenderPass	./Rendering/RenderPassHelpers.cpp	/^RenderPass createRenderingRenderPass(VkDevice device)$/;"	f	typeref:typename:RenderPass
 createRenderingRenderPass	Rendering/RenderPassHelpers.cpp	/^RenderPass createRenderingRenderPass(VkDevice device)$/;"	f	typeref:typename:RenderPass
+createShaderModule	Rendering/GraphicsPipelineHelpers.cpp	/^ShaderModule createShaderModule(VkDevice device, const std::vector<char>& code)$/;"	f	typeref:typename:ShaderModule
+createShaderModule	Rendering/GraphicsPipelineHelpers.cpp	/^ShaderModule createShaderModule(const std::vector<char>& code)$/;"	f	typeref:typename:ShaderModule
 debugCallback	Rendering/DebugUtilsMessengerHelpers.cpp	/^VkBool32 VKAPI_PTR debugCallback($/;"	f	typeref:typename:VkBool32 VKAPI_PTR
 debugMessenger	Rendering/RenderingManager.h	/^    DebugUtilsMessenger debugMessenger;$/;"	m	class:RenderingManager	typeref:typename:DebugUtilsMessenger
 defaultQueuePriority	./Rendering/RenderingDevice.cpp	/^const float defaultQueuePriority = 1.0f;$/;"	v	typeref:typename:const float
@@ -180,6 +187,7 @@ device	./VulkanWrappers/Semaphore.h	/^    VkDevice device;$/;"	m	class:Semaphore
 device	./VulkanWrappers/Swapchain.h	/^    VkDevice device;$/;"	m	class:Swapchain	typeref:typename:VkDevice
 device	Rendering/RenderingManager.h	/^    RenderingDevice device;$/;"	m	class:RenderingManager	typeref:typename:RenderingDevice
 device	VulkanWrappers/CommandPool.h	/^    VkDevice device;$/;"	m	class:CommandPool	typeref:typename:VkDevice
+device	VulkanWrappers/ShaderModule.h	/^    VkDevice device;$/;"	m	class:ShaderModule	typeref:typename:VkDevice
 doesPhysicalDeviceSupportExtensions	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportExtensions($/;"	f	typeref:typename:bool
 doesPhysicalDeviceSupportExtensions	Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportExtensions($/;"	f	typeref:typename:bool
 doesPhysicalDeviceSupportFeatures	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportFeatures($/;"	f	typeref:typename:bool
@@ -243,6 +251,7 @@ getHandle	VulkanWrappers/Framebuffer.cpp	/^VkFramebuffer Framebuffer::getHandle(
 getHandle	VulkanWrappers/ImageView.cpp	/^VkImageView ImageView::getHandle()$/;"	f	class:ImageView	typeref:typename:VkImageView
 getHandle	VulkanWrappers/Pipeline.cpp	/^VkPipeline Pipeline::getHandle()$/;"	f	class:Pipeline	typeref:typename:VkPipeline
 getHandle	VulkanWrappers/RenderPass.cpp	/^VkRenderPass RenderPass::getHandle()$/;"	f	class:RenderPass	typeref:typename:VkRenderPass
+getHandle	VulkanWrappers/ShaderModule.cpp	/^VkShaderModule ShaderModule::getHandle()$/;"	f	class:ShaderModule	typeref:typename:VkShaderModule
 getImageExtent	./Rendering/RenderingSwapchain.cpp	/^VkExtent2D getImageExtent(VkSurfaceCapabilitiesKHR surfaceCapabilities, GLFWwindow* window)$/;"	f	typeref:typename:VkExtent2D
 getImageExtent	Rendering/RenderingSwapchain.cpp	/^VkExtent2D getImageExtent(VkSurfaceCapabilitiesKHR surfaceCapabilities, GLFWwindow* window)$/;"	f	typeref:typename:VkExtent2D
 getInputAssemblyInfo	./Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineInputAssemblyStateCreateInfo getInputAssemblyInfo()$/;"	f	typeref:typename:VkPipelineInputAssemblyStateCreateInfo
@@ -316,6 +325,7 @@ handle	./VulkanWrappers/Surface.h	/^    VkSurfaceKHR handle;$/;"	m	class:Surface
 handle	./VulkanWrappers/Swapchain.h	/^    VkSwapchainKHR handle;$/;"	m	class:Swapchain	typeref:typename:VkSwapchainKHR
 handle	VulkanWrappers/CommandPool.h	/^    VkCommandPool handle;$/;"	m	class:CommandPool	typeref:typename:VkCommandPool
 handle	VulkanWrappers/DebugUtilsMessenger.h	/^    VkDebugUtilsMessengerEXT handle;$/;"	m	class:DebugUtilsMessenger	typeref:typename:VkDebugUtilsMessengerEXT
+handle	VulkanWrappers/ShaderModule.h	/^    VkShaderModule handle;$/;"	m	class:ShaderModule	typeref:typename:VkShaderModule
 initVulkanAndGLFW	./GLFWwrappers/GLFWmanager.cpp	/^void GLFWmanager::initVulkanAndGLFW()$/;"	f	class:GLFWmanager	typeref:typename:void
 instance	./GLFWwrappers/GLFWmanager.cpp	/^GLFWmanager* GLFWmanager::instance = nullptr;$/;"	m	class:GLFWmanager	typeref:typename:GLFWmanager *
 instance	./GLFWwrappers/GLFWmanager.h	/^    static GLFWmanager* instance;$/;"	m	class:GLFWmanager	typeref:typename:GLFWmanager *
@@ -350,6 +360,7 @@ operator =	VulkanWrappers/Framebuffer.cpp	/^Framebuffer& Framebuffer::operator=(
 operator =	VulkanWrappers/ImageView.cpp	/^ImageView& ImageView::operator=(ImageView&& rhs)$/;"	f	class:ImageView	typeref:typename:ImageView &
 operator =	VulkanWrappers/Pipeline.cpp	/^Pipeline& Pipeline::operator=(Pipeline&& rhs)$/;"	f	class:Pipeline	typeref:typename:Pipeline &
 operator =	VulkanWrappers/RenderPass.cpp	/^RenderPass& RenderPass::operator=(RenderPass&& rhs)$/;"	f	class:RenderPass	typeref:typename:RenderPass &
+operator =	VulkanWrappers/ShaderModule.cpp	/^ShaderModule& ShaderModule::operator=(ShaderModule&& rhs)$/;"	f	class:ShaderModule	typeref:typename:ShaderModule &
 outputImageView	./Rendering/RenderingFramebuffer.h	/^    ImageView outputImageView;$/;"	m	class:RenderingFramebuffer	typeref:typename:ImageView
 physicalDevice	./VulkanWrappers/LogicalDevice.h	/^    VkPhysicalDevice physicalDevice;$/;"	m	class:LogicalDevice	typeref:typename:VkPhysicalDevice
 pipelineLayout	Rendering/RenderingManager.h	/^    PipelineLayout pipelineLayout;$/;"	m	class:RenderingManager	typeref:typename:PipelineLayout
@@ -393,6 +404,7 @@ z	./Rendering/Vertex.h	/^    float x, y, z;$/;"	m	struct:vec3	typeref:typename:f
 ~RenderPass	VulkanWrappers/RenderPass.cpp	/^RenderPass::~RenderPass()$/;"	f	class:RenderPass
 ~RenderingManager	Rendering/RenderingManager.cpp	/^RenderingManager::~RenderingManager()$/;"	f	class:RenderingManager
 ~Semaphore	./VulkanWrappers/Semaphore.cpp	/^Semaphore::~Semaphore()$/;"	f	class:Semaphore
+~ShaderModule	VulkanWrappers/ShaderModule.cpp	/^ShaderModule::~ShaderModule()$/;"	f	class:ShaderModule
 ~Surface	./VulkanWrappers/Surface.cpp	/^Surface::~Surface()$/;"	f	class:Surface
 ~Swapchain	./VulkanWrappers/Swapchain.cpp	/^Swapchain::~Swapchain()$/;"	f	class:Swapchain
 ~Window	./GLFWwrappers/Window.cpp	/^Window::~Window()$/;"	f	class:Window

@@ -25,7 +25,7 @@ bool isASubsetOfB(const std::vector<const char*>& A, const std::vector<const cha
 
 std::vector<char> getFileData(const char* filename)
 {
-    std::ifstream stream(filename);
+    std::ifstream stream(filename, std::ios::ate | std::ios::binary);
 
     if (!stream.is_open()) {
 	std::string errorMessage = "failed to open file: ";
@@ -33,7 +33,6 @@ std::vector<char> getFileData(const char* filename)
 	throw std::runtime_error(errorMessage);
     }
 
-    stream.seekg(0, stream.end);
     int length = stream.tellg();
     stream.seekg(0, stream.beg);
 

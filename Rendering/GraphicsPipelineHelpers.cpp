@@ -6,13 +6,15 @@
 
 #include "Utility.h"
 #include "Vertex.h"
+#include "ShaderModule.h"
 
-std::vector<VkShaderModuleCreateInfo> getShaderModuleCreateInfos(
-	const std::vector<char>& vertexShaderData,
-	const std::vector<char>& fragmentShaderData);
+ShaderModule createShaderModule(
+	VkDevice device,
+	const std::vector<char>& code);
 
 std::vector<VkPipelineShaderStageCreateInfo> getShaderStageInfos(
-	const std::vector<VkShaderModuleCreateInfo>& moduleInfos);
+	ShaderModule& vertexShader,
+	ShaderModule& fragmentShader);
 
 std::vector<VkVertexInputBindingDescription> getVertexBindings();
 
@@ -60,8 +62,9 @@ Pipeline createRenderingPipeline(
 {
     auto vertexShaderData = getFileData("vert.spv");
     auto fragmentShaderData = getFileData("frag.spv");
-    auto shaderModuleInfos = getShaderModuleCreateInfos(vertexShaderData, fragmentShaderData);
-    auto shaderStageInfos = getShaderStageInfos(shaderModuleInfos);
+    auto vertexShaderModule = createShaderModule(device, vertexShaderData);
+    auto fragmentShaderModule = createShaderModule(device, fragmentShaderData);
+    auto shaderStageInfos = getShaderStageInfos(vertexShaderModule, fragmentShaderModule);
 
     auto bindings = getVertexBindings();
     auto attributes = getAttributeBindings();
@@ -96,6 +99,17 @@ Pipeline createRenderingPipeline(
     return Pipeline(device, createInfo);
 }
 
+ShaderModule createShaderModule(VkDevice device, const std::vector<char>& code)
+{
+    VkShaderModuleCreateInfo createInfo = {};
+    createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+    createInfo.codeSize = code.size();
+    createInfo.pCode = reinterpret_cast<const uint32_t*>(&code.front());
+
+    return ShaderModule(device, createInfo);
+}
+
+/*
 std::vector<VkShaderModuleCreateInfo> getShaderModuleCreateInfos(
 	const std::vector<char>& vertexShaderData,
 	const std::vector<char>& fragmentShaderData)
@@ -112,20 +126,22 @@ std::vector<VkShaderModuleCreateInfo> getShaderModuleCreateInfos(
 
     return createInfos;
 }
+*/
 
 std::vector<VkPipelineShaderStageCreateInfo> getShaderStageInfos(
-	const std::vector<VkShaderModuleCreateInfo>& moduleInfos)
+	ShaderModule& vertexShader,
+	ShaderModule& fragmentShader)
 {
     std::vector<VkPipelineShaderStageCreateInfo> shaderStages{ {}, {} };
 
     shaderStages[0].sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
-    shaderStages[0].pNext = &moduleInfos[0];
     shaderStages[0].stage = VK_SHADER_STAGE_VERTEX_BIT;
+    shaderStages[0].module = vertexShader.getHandle();
     shaderStages[0].pName = "main";
 
     shaderStages[1].sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
-    shaderStages[1].pNext = &moduleInfos[1];
     shaderStages[1].stage = VK_SHADER_STAGE_FRAGMENT_BIT;
+    shaderStages[1].module = fragmentShader.getHandle();
     shaderStages[1].pName = "main";
 
     return shaderStages;
