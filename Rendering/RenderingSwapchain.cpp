@@ -73,7 +73,7 @@ RenderingSwapchain& RenderingSwapchain::operator=(RenderingSwapchain&& rhs)
     return *this;
 }
 
-const RenderingFramebuffer& RenderingSwapchain::getFramebuffer(uint32_t imageIndex)
+RenderingFramebuffer& RenderingSwapchain::getFramebuffer(uint32_t imageIndex)
 {
     return framebuffers[imageIndex];
 }

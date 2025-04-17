@@ -80,6 +80,8 @@ LogicalDevice	./VulkanWrappers/LogicalDevice.h	/^class LogicalDevice$/;"	c
 Pipeline	./VulkanWrappers/Pipeline.cpp	/^Pipeline::Pipeline($/;"	f	class:Pipeline
 Pipeline	./VulkanWrappers/Pipeline.cpp	/^Pipeline::Pipeline(Pipeline&& rhs) :$/;"	f	class:Pipeline
 Pipeline	./VulkanWrappers/Pipeline.h	/^class Pipeline$/;"	c
+Pipeline	VulkanWrappers/Pipeline.cpp	/^Pipeline::Pipeline($/;"	f	class:Pipeline
+Pipeline	VulkanWrappers/Pipeline.cpp	/^Pipeline::Pipeline(Pipeline&& rhs) :$/;"	f	class:Pipeline
 PipelineLayout	./VulkanWrappers/PipelineLayout.cpp	/^PipelineLayout::PipelineLayout($/;"	f	class:PipelineLayout
 PipelineLayout	./VulkanWrappers/PipelineLayout.cpp	/^PipelineLayout::PipelineLayout(PipelineLayout&& rhs) :$/;"	f	class:PipelineLayout
 PipelineLayout	./VulkanWrappers/PipelineLayout.h	/^class PipelineLayout$/;"	c
@@ -107,6 +109,7 @@ RenderingSwapchain	./Rendering/RenderingSwapchain.h	/^class RenderingSwapchain :
 RenderingSwapchain	Rendering/RenderingSwapchain.cpp	/^RenderingSwapchain::RenderingSwapchain($/;"	f	class:RenderingSwapchain
 RenderingSwapchain	Rendering/RenderingSwapchain.cpp	/^RenderingSwapchain::RenderingSwapchain(RenderingSwapchain&& rhs) :$/;"	f	class:RenderingSwapchain
 RenderingSwapchain	Rendering/RenderingSwapchain.h	/^class RenderingSwapchain : Swapchain$/;"	c
+RenderingSwapchain	Rendering/RenderingSwapchain.h	/^class RenderingSwapchain : public Swapchain$/;"	c
 Semaphore	./VulkanWrappers/Semaphore.cpp	/^Semaphore::Semaphore(Semaphore&& rhs) :$/;"	f	class:Semaphore
 Semaphore	./VulkanWrappers/Semaphore.cpp	/^Semaphore::Semaphore(VkDevice device, const VkSemaphoreCreateInfo& createInfo) :$/;"	f	class:Semaphore
 Semaphore	./VulkanWrappers/Semaphore.h	/^class Semaphore$/;"	c
@@ -132,16 +135,21 @@ __anone99712860402	./VulkanWrappers/EnumerationHelpers.h	/^	enumerateArray<VkQue
 __anone99712860502	./VulkanWrappers/EnumerationHelpers.h	/^	enumerateArray<VkExtensionProperties>([physicalDevice, pLayerName](uint32_t* count, VkExtension/;"	f	function:enumerateDeviceExtensionProperties	file:
 __anone99712860602	./VulkanWrappers/EnumerationHelpers.h	/^	enumerateArray<VkSurfaceFormatKHR>([physicalDevice, surface](uint32_t* count, VkSurfaceFormatKH/;"	f	function:getPhysicalDeviceSurfaceFormatsKHR	file:
 __anone99712860702	./VulkanWrappers/EnumerationHelpers.h	/^	enumerateArray<VkImage>([device, swapchain](uint32_t* count, VkImage* elements) {$/;"	f	function:getSwapchainImagesKHR	file:
+acquiredImageSemaphore	Rendering/RenderingManager.h	/^    Semaphore acquiredImageSemaphore, finishedRenderingSemaphore;$/;"	m	class:RenderingManager	typeref:typename:Semaphore
 areExtensionsSupported	./Rendering/InstanceHelpers.cpp	/^bool areExtensionsSupported(const std::vector<const char*>& extensions)$/;"	f	typeref:typename:bool
 areLayersSupported	./Rendering/InstanceHelpers.cpp	/^bool areLayersSupported(const std::vector<const char*>& layers)$/;"	f	typeref:typename:bool
 blendConstants	Rendering/GraphicsPipelineHelpers.cpp	/^static float blendConstants[4] = { 1.0f, 1.0f, 1.0f, 1.0f };$/;"	v	typeref:typename:float[4]	file:
 checkVkResult	./GLFWwrappers/VulkanWithGLFW.h	/^inline void checkVkResult(VkResult result, const char* filename, int lineNumber)$/;"	f	typeref:typename:void
 clamp	./Utility/Utility.h	/^T clamp(T x, T min, T max)$/;"	f	typeref:typename:T
 color	./Rendering/Vertex.h	/^    vec3 position, color;$/;"	m	struct:Vertex	typeref:typename:vec3
+commandBuffer	Rendering/RenderingManager.h	/^    VkCommandBuffer commandBuffer;$/;"	m	class:RenderingManager	typeref:typename:VkCommandBuffer
+commandPool	Rendering/RenderingManager.h	/^    CommandPool commandPool;$/;"	m	class:RenderingManager	typeref:typename:CommandPool
 createBinarySemaphore	./Rendering/SynchronizationHelpers.cpp	/^Semaphore createBinarySemaphore(VkDevice device)$/;"	f	typeref:typename:Semaphore
+createBinarySemaphore	Rendering/SynchronizationHelpers.cpp	/^Semaphore createBinarySemaphore(VkDevice device)$/;"	f	typeref:typename:Semaphore
 createEmptyPipelineLayout	Rendering/GraphicsPipelineHelpers.cpp	/^PipelineLayout createEmptyPipelineLayout()$/;"	f	typeref:typename:PipelineLayout
 createEmptyPipelineLayout	Rendering/GraphicsPipelineHelpers.cpp	/^PipelineLayout createEmptyPipelineLayout(VkDevice device)$/;"	f	typeref:typename:PipelineLayout
 createFence	./Rendering/SynchronizationHelpers.cpp	/^Fence createFence(VkDevice device)$/;"	f	typeref:typename:Fence
+createFence	Rendering/SynchronizationHelpers.cpp	/^Fence createFence(VkDevice device)$/;"	f	typeref:typename:Fence
 createRenderingCommandPool	Rendering/CommandPoolHelpers.cpp	/^CommandPool createRenderingCommandPool(VkDevice device, uint32_t graphicsQueueFamilyIndex)$/;"	f	typeref:typename:CommandPool
 createRenderingImageView	./Rendering/ImageViewHelpers.cpp	/^ImageView createRenderingImageView(VkDevice device, VkImage image)$/;"	f	typeref:typename:ImageView
 createRenderingInstance	./Rendering/InstanceHelpers.cpp	/^Instance createRenderingInstance()$/;"	f	typeref:typename:Instance
@@ -169,6 +177,8 @@ doesPhysicalDeviceSupportRequiredQueueCapabilities	./Rendering/RenderingDevice.c
 doesPhysicalDeviceSupportRequiredQueueCapabilities	Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportRequiredQueueCapabilities(VkInstance instance, VkPhysicalDevice ph/;"	f	typeref:typename:bool
 doesPhysicalDeviceSupportRequiredSurfaceFormats	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportRequiredSurfaceFormats(VkPhysicalDevice physicalDevice, VkSurfaceK/;"	f	typeref:typename:bool
 doesPhysicalDeviceSupportRequiredSurfaceFormats	Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportRequiredSurfaceFormats(VkPhysicalDevice physicalDevice, VkSurfaceK/;"	f	typeref:typename:bool
+draw	Rendering/RenderingManager.cpp	/^void RenderingManager::draw()$/;"	f	class:RenderingManager	typeref:typename:void
+draw	Rendering/RenderingManager.cpp	/^void RenderingManager::draw(const std::vector<Vertex>& buffer)$/;"	f	class:RenderingManager	typeref:typename:void
 enumerateArray	./VulkanWrappers/EnumerationHelpers.h	/^std::vector<T> enumerateArray(std::function<VkResult(uint32_t*, T*)> enumerator)$/;"	f	typeref:typename:std::vector<T>
 enumerateDeviceExtensionProperties	./VulkanWrappers/EnumerationHelpers.h	/^inline std::vector<VkExtensionProperties> enumerateDeviceExtensionProperties($/;"	f	typeref:typename:std::vector<VkExtensionProperties>
 enumerateInstanceExtensionProperties	./VulkanWrappers/EnumerationHelpers.h	/^inline std::vector<VkExtensionProperties> enumerateInstanceExtensionProperties(const char* pLaye/;"	f	typeref:typename:std::vector<VkExtensionProperties>
@@ -177,6 +187,7 @@ enumeratePhysicalDevices	./VulkanWrappers/EnumerationHelpers.h	/^inline std::vec
 findPhysicalDevice	./Rendering/RenderingDevice.cpp	/^VkPhysicalDevice findPhysicalDevice(VkInstance instance, VkSurfaceKHR surface)$/;"	f	typeref:typename:VkPhysicalDevice
 findPhysicalDevice	Rendering/RenderingDevice.cpp	/^VkPhysicalDevice findPhysicalDevice(VkInstance instance, VkSurfaceKHR surface)$/;"	f	typeref:typename:VkPhysicalDevice
 finishedRenderingFence	Rendering/RenderingManager.h	/^    Fence finishedRenderingFence;$/;"	m	class:RenderingManager	typeref:typename:Fence
+finishedRenderingSemaphore	Rendering/RenderingManager.h	/^    Semaphore acquiredImageSemaphore, finishedRenderingSemaphore;$/;"	m	class:RenderingManager	typeref:typename:Semaphore
 finishedRenderingSemaphore	Rendering/RenderingManager.h	/^    Semaphore finishedRenderingSemaphore;$/;"	m	class:RenderingManager	typeref:typename:Semaphore
 framebuffers	./Rendering/RenderingSwapchain.h	/^    std::vector<RenderingFramebuffer> framebuffers;$/;"	m	class:RenderingSwapchain	typeref:typename:std::vector<RenderingFramebuffer>
 framebuffers	Rendering/RenderingSwapchain.h	/^    std::vector<RenderingFramebuffer> framebuffers;$/;"	m	class:RenderingSwapchain	typeref:typename:std::vector<RenderingFramebuffer>
@@ -192,7 +203,9 @@ getColorBlendInfo	Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineColorBlendSt
 getCompositeAlpha	./Rendering/RenderingSwapchain.cpp	/^VkCompositeAlphaFlagBitsKHR getCompositeAlpha(VkSurfaceCapabilitiesKHR surfaceCapabilities)$/;"	f	typeref:typename:VkCompositeAlphaFlagBitsKHR
 getCompositeAlpha	Rendering/RenderingSwapchain.cpp	/^VkCompositeAlphaFlagBitsKHR getCompositeAlpha(VkSurfaceCapabilitiesKHR surfaceCapabilities)$/;"	f	typeref:typename:VkCompositeAlphaFlagBitsKHR
 getFileData	./Utility/Utility.cpp	/^std::vector<char> getFileData(const char* filename)$/;"	f	typeref:typename:std::vector<char>
+getFileData	Utility/Utility.cpp	/^std::vector<char> getFileData(const char* filename)$/;"	f	typeref:typename:std::vector<char>
 getFramebuffer	./Rendering/RenderingSwapchain.cpp	/^const RenderingFramebuffer& RenderingSwapchain::getFramebuffer(uint32_t imageIndex)$/;"	f	class:RenderingSwapchain	typeref:typename:const RenderingFramebuffer &
+getFramebuffer	Rendering/RenderingSwapchain.cpp	/^RenderingFramebuffer& RenderingSwapchain::getFramebuffer(uint32_t imageIndex)$/;"	f	class:RenderingSwapchain	typeref:typename:RenderingFramebuffer &
 getFramebuffer	Rendering/RenderingSwapchain.cpp	/^const RenderingFramebuffer& RenderingSwapchain::getFramebuffer(uint32_t imageIndex)$/;"	f	class:RenderingSwapchain	typeref:typename:const RenderingFramebuffer &
 getGraphicsQueueFamily	./Rendering/RenderingDevice.cpp	/^const QueueFamily& RenderingDevice::getGraphicsQueueFamily()$/;"	f	class:RenderingDevice	typeref:typename:const QueueFamily &
 getGraphicsQueueFamily	Rendering/RenderingDevice.cpp	/^const QueueFamily& RenderingDevice::getGraphicsQueueFamily()$/;"	f	class:RenderingDevice	typeref:typename:const QueueFamily &
@@ -212,6 +225,7 @@ getHandle	VulkanWrappers/CommandPool.cpp	/^VkCommandPool CommandPool::getHandle(
 getHandle	VulkanWrappers/Fence.cpp	/^VkFence Fence::getHandle()$/;"	f	class:Fence	typeref:typename:VkFence
 getHandle	VulkanWrappers/Framebuffer.cpp	/^VkFramebuffer Framebuffer::getHandle()$/;"	f	class:Framebuffer	typeref:typename:VkFramebuffer
 getHandle	VulkanWrappers/ImageView.cpp	/^VkImageView ImageView::getHandle()$/;"	f	class:ImageView	typeref:typename:VkImageView
+getHandle	VulkanWrappers/Pipeline.cpp	/^VkPipeline Pipeline::getHandle()$/;"	f	class:Pipeline	typeref:typename:VkPipeline
 getHandle	VulkanWrappers/RenderPass.cpp	/^VkRenderPass RenderPass::getHandle()$/;"	f	class:RenderPass	typeref:typename:VkRenderPass
 getImageExtent	./Rendering/RenderingSwapchain.cpp	/^VkExtent2D getImageExtent(VkSurfaceCapabilitiesKHR surfaceCapabilities, GLFWwindow* window)$/;"	f	typeref:typename:VkExtent2D
 getImageExtent	Rendering/RenderingSwapchain.cpp	/^VkExtent2D getImageExtent(VkSurfaceCapabilitiesKHR surfaceCapabilities, GLFWwindow* window)$/;"	f	typeref:typename:VkExtent2D
@@ -236,6 +250,7 @@ getQueueFamilyCount	./VulkanWrappers/LogicalDevice.cpp	/^size_t LogicalDevice::g
 getQueueHandles	./VulkanWrappers/LogicalDevice.cpp	/^std::vector<QueueFamily> getQueueHandles(VkDevice device, const VkDeviceCreateInfo& createInfo)$/;"	f	typeref:typename:std::vector<QueueFamily>
 getRasterizationInfo	./Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineRasterizationStateCreateInfo getRasterizationInfo()$/;"	f	typeref:typename:VkPipelineRasterizationStateCreateInfo
 getRasterizationInfo	Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineRasterizationStateCreateInfo getRasterizationInfo()$/;"	f	typeref:typename:VkPipelineRasterizationStateCreateInfo
+getRenderArea	Rendering/RenderingManager.cpp	/^VkRect2D RenderingManager::getRenderArea()$/;"	f	class:RenderingManager	typeref:typename:VkRect2D
 getRequiredDeviceExtensions	./Rendering/RenderingDevice.cpp	/^std::vector<const char*> getRequiredDeviceExtensions()$/;"	f	typeref:typename:std::vector<const char * >
 getRequiredDeviceExtensions	Rendering/RenderingDevice.cpp	/^std::vector<const char*> getRequiredDeviceExtensions()$/;"	f	typeref:typename:std::vector<const char * >
 getRequiredExtensions	./Rendering/InstanceHelpers.cpp	/^std::vector<const char*> getRequiredExtensions()$/;"	f	typeref:typename:std::vector<const char * >
@@ -283,6 +298,7 @@ instance	./GLFWwrappers/GLFWmanager.h	/^    static GLFWmanager* instance;$/;"	m	
 instance	./VulkanWrappers/Surface.h	/^    VkInstance instance;$/;"	m	class:Surface	typeref:typename:VkInstance
 instance	Rendering/RenderingManager.h	/^    Instance instance;$/;"	m	class:RenderingManager	typeref:typename:Instance
 isASubsetOfB	./Utility/Utility.cpp	/^bool isASubsetOfB(const std::vector<const char*>& A, const std::vector<const char*>& B)$/;"	f	typeref:typename:bool
+isASubsetOfB	Utility/Utility.cpp	/^bool isASubsetOfB(const std::vector<const char*>& A, const std::vector<const char*>& B)$/;"	f	typeref:typename:bool
 isPhysicalDeviceSuitable	./Rendering/RenderingDevice.cpp	/^bool isPhysicalDeviceSuitable(VkInstance instance, VkPhysicalDevice physicalDevice, VkSurfaceKHR/;"	f	typeref:typename:bool
 isPhysicalDeviceSuitable	Rendering/RenderingDevice.cpp	/^bool isPhysicalDeviceSuitable(VkInstance instance, VkPhysicalDevice physicalDevice, VkSurfaceKHR/;"	f	typeref:typename:bool
 main	main.cpp	/^int main()$/;"	f	typeref:typename:int
@@ -306,6 +322,7 @@ operator =	VulkanWrappers/CommandPool.cpp	/^CommandPool& CommandPool::operator=(
 operator =	VulkanWrappers/Fence.cpp	/^Fence& Fence::operator=(Fence&& rhs)$/;"	f	class:Fence	typeref:typename:Fence &
 operator =	VulkanWrappers/Framebuffer.cpp	/^Framebuffer& Framebuffer::operator=(Framebuffer&& rhs)$/;"	f	class:Framebuffer	typeref:typename:Framebuffer &
 operator =	VulkanWrappers/ImageView.cpp	/^ImageView& ImageView::operator=(ImageView&& rhs)$/;"	f	class:ImageView	typeref:typename:ImageView &
+operator =	VulkanWrappers/Pipeline.cpp	/^Pipeline& Pipeline::operator=(Pipeline&& rhs)$/;"	f	class:Pipeline	typeref:typename:Pipeline &
 operator =	VulkanWrappers/RenderPass.cpp	/^RenderPass& RenderPass::operator=(RenderPass&& rhs)$/;"	f	class:RenderPass	typeref:typename:RenderPass &
 outputImageView	./Rendering/RenderingFramebuffer.h	/^    ImageView outputImageView;$/;"	m	class:RenderingFramebuffer	typeref:typename:ImageView
 physicalDevice	./VulkanWrappers/LogicalDevice.h	/^    VkPhysicalDevice physicalDevice;$/;"	m	class:LogicalDevice	typeref:typename:VkPhysicalDevice
@@ -315,13 +332,17 @@ presentFamilyIndex	./Rendering/RenderingDevice.h	/^    size_t graphicsFamilyInde
 queueFamilies	./VulkanWrappers/LogicalDevice.h	/^    std::vector<QueueFamily> queueFamilies;$/;"	m	class:LogicalDevice	typeref:typename:std::vector<QueueFamily>
 queueFamilyIndex	./VulkanWrappers/LogicalDevice.h	/^    uint32_t queueFamilyIndex;$/;"	m	struct:QueueFamily	typeref:typename:uint32_t
 queues	./VulkanWrappers/LogicalDevice.h	/^    std::vector<VkQueue> queues;$/;"	m	struct:QueueFamily	typeref:typename:std::vector<VkQueue>
+recordCommandBuffer	Rendering/RenderingManager.cpp	/^void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, uint32_t imageInde/;"	f	class:RenderingManager	typeref:typename:void
+recordCommandBuffer	Rendering/RenderingManager.cpp	/^void RenderingManager::recordCommandBuffer(uint32_t imageIndex)$/;"	f	class:RenderingManager	typeref:typename:void
 renderPass	Rendering/RenderingManager.h	/^    RenderPass renderPass;$/;"	m	class:RenderingManager	typeref:typename:RenderPass
+setVertexBuffer	Rendering/RenderingManager.cpp	/^void RenderingManager::setVertexBuffer(const std::vector<Vertex>& buffer)$/;"	f	class:RenderingManager	typeref:typename:void
 setupFramebuffers	./Rendering/RenderingSwapchain.cpp	/^void RenderingSwapchain::setupFramebuffers(VkDevice device, VkRenderPass renderPass, GLFWwindow*/;"	f	class:RenderingSwapchain	typeref:typename:void
 setupFramebuffers	Rendering/RenderingSwapchain.cpp	/^void RenderingSwapchain::setupFramebuffers(VkDevice device, VkRenderPass renderPass, GLFWwindow*/;"	f	class:RenderingSwapchain	typeref:typename:void
+shouldLoop	Rendering/RenderingManager.cpp	/^bool RenderingManager::shouldLoop()$/;"	f	class:RenderingManager	typeref:typename:bool
 surface	./Rendering/RenderingSwapchain.h	/^    Surface surface;$/;"	m	class:RenderingSwapchain	typeref:typename:Surface
 swapchain	Rendering/RenderingManager.h	/^    RenderingSwapchain swapchain;$/;"	m	class:RenderingManager	typeref:typename:RenderingSwapchain
 vec3	./Rendering/Vertex.h	/^struct vec3$/;"	s
-vertices	main.cpp	/^static Vertex vertices[] = {$/;"	v	typeref:typename:Vertex[]	file:
+vertices	main.cpp	/^static std::vector<Vertex> vertices = {$/;"	v	typeref:typename:std::vector<Vertex>	file:
 window	./GLFWwrappers/Window.h	/^    GLFWwindow* window;$/;"	m	class:Window	typeref:typename:GLFWwindow *
 window	Rendering/RenderingManager.h	/^    Window window;$/;"	m	class:RenderingManager	typeref:typename:Window
 windowSurface	Rendering/RenderingManager.h	/^    Surface windowSurface;$/;"	m	class:RenderingManager	typeref:typename:Surface
@@ -339,9 +360,11 @@ z	./Rendering/Vertex.h	/^    float x, y, z;$/;"	m	struct:vec3	typeref:typename:f
 ~Instance	./VulkanWrappers/Instance.cpp	/^Instance::~Instance()$/;"	f	class:Instance
 ~LogicalDevice	./VulkanWrappers/LogicalDevice.cpp	/^LogicalDevice::~LogicalDevice()$/;"	f	class:LogicalDevice
 ~Pipeline	./VulkanWrappers/Pipeline.cpp	/^Pipeline::~Pipeline()$/;"	f	class:Pipeline
+~Pipeline	VulkanWrappers/Pipeline.cpp	/^Pipeline::~Pipeline()$/;"	f	class:Pipeline
 ~PipelineLayout	./VulkanWrappers/PipelineLayout.cpp	/^PipelineLayout::~PipelineLayout()$/;"	f	class:PipelineLayout
 ~RenderPass	./VulkanWrappers/RenderPass.cpp	/^RenderPass::~RenderPass()$/;"	f	class:RenderPass
 ~RenderPass	VulkanWrappers/RenderPass.cpp	/^RenderPass::~RenderPass()$/;"	f	class:RenderPass
+~RenderingManager	Rendering/RenderingManager.cpp	/^RenderingManager::~RenderingManager()$/;"	f	class:RenderingManager
 ~Semaphore	./VulkanWrappers/Semaphore.cpp	/^Semaphore::~Semaphore()$/;"	f	class:Semaphore
 ~Surface	./VulkanWrappers/Surface.cpp	/^Surface::~Surface()$/;"	f	class:Surface
 ~Swapchain	./VulkanWrappers/Swapchain.cpp	/^Swapchain::~Swapchain()$/;"	f	class:Swapchain

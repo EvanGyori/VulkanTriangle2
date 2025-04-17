@@ -163,10 +163,12 @@ VkPipelineVertexInputStateCreateInfo getVertexInputInfo(
 {
     VkPipelineVertexInputStateCreateInfo info = {};
     info.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+    /* temp
     info.vertexBindingDescriptionCount = bindings.size();
     info.pVertexBindingDescriptions = &bindings.front();
     info.vertexAttributeDescriptionCount = attributes.size();
     info.pVertexAttributeDescriptions = &attributes.front();
+    */
 
     return info;
 }
@@ -232,6 +234,7 @@ VkPipelineRasterizationStateCreateInfo getRasterizationInfo()
     info.polygonMode = VK_POLYGON_MODE_FILL;
     info.cullMode = VK_CULL_MODE_NONE;
     info.frontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
+    info.lineWidth = 1.0f;
     
     return info;
 }

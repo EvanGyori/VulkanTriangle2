@@ -1,11 +1,15 @@
 #include "Pipeline.h"
 
+#include <iostream>
+
 Pipeline::Pipeline(
 	VkDevice device,
 	const VkGraphicsPipelineCreateInfo& createInfo) :
     device(device)
 {
+    std::cout << "cbefore\n";
     VK_CHECK(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &createInfo, nullptr, &handle));
+    std::cout << "after\n";
 }
 
 Pipeline::~Pipeline()

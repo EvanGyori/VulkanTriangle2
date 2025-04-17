@@ -7,7 +7,7 @@
 #include "RenderingFramebuffer.h"
 #include "RenderingDevice.h"
 
-class RenderingSwapchain : Swapchain
+class RenderingSwapchain : public Swapchain
 {
 public:
     RenderingSwapchain(
@@ -21,7 +21,7 @@ public:
     RenderingSwapchain& operator=(RenderingSwapchain&& rhs);
 
     // imageIndex is the index received by acquiring the next image of this swapchain
-    const RenderingFramebuffer& getFramebuffer(uint32_t imageIndex);
+    RenderingFramebuffer& getFramebuffer(uint32_t imageIndex);
 
 private:
     std::vector<RenderingFramebuffer> framebuffers;
