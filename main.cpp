@@ -24,9 +24,7 @@ int main()
 {
     try {
 	RenderingManager manager;
-	std::cout << "test2\n";
 	while (manager.shouldLoop()) {
-	    std::cout << "test\n";
 	    manager.draw(vertices);
 	}
     } catch (std::runtime_error error) {
