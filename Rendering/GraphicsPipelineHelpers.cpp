@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <cstddef>
+#include <iostream>
 
 #include "Utility.h"
 #include "Vertex.h"
@@ -100,7 +101,7 @@ std::vector<VkShaderModuleCreateInfo> getShaderModuleCreateInfos(
 	const std::vector<char>& fragmentShaderData)
 {
     std::vector<VkShaderModuleCreateInfo> createInfos = { {}, {} };
-    
+
     createInfos[0].sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
     createInfos[0].codeSize = vertexShaderData.size() / sizeof(uint32_t);
     createInfos[0].pCode = reinterpret_cast<const uint32_t*>(&vertexShaderData.front());

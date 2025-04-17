@@ -1,7 +1,6 @@
 #include "RenderingManager.h"
 
 #include <limits>
-#include <iostream>
 
 #include "InstanceHelpers.h"
 #include "SynchronizationHelpers.h"
@@ -24,7 +23,6 @@ RenderingManager::RenderingManager() :
     commandPool(createRenderingCommandPool(device.getHandle(), device.getGraphicsQueueFamily().queueFamilyIndex)),
     commandBuffer(VK_NULL_HANDLE)
 {
-    std::cout << "testing!\n";
     VkCommandBufferAllocateInfo allocInfo = {};
     allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
     allocInfo.commandPool = commandPool.getHandle();

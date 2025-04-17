@@ -49,6 +49,11 @@ CommandPool	VulkanWrappers/CommandPool.cpp	/^CommandPool::CommandPool(CommandPoo
 CommandPool	VulkanWrappers/CommandPool.cpp	/^CommandPool::CommandPool(VkDevice device, const VkCommandPoolCreateInfo& createInfo) :$/;"	f	class:CommandPool
 CommandPool	VulkanWrappers/CommandPool.cpp	/^CommandPool::CommandPool(VkDevice device, const VkCommandPoolCreateInfo& createInfo)$/;"	f	class:CommandPool
 CommandPool	VulkanWrappers/CommandPool.h	/^class CommandPool$/;"	c
+DebugUtilsMessenger	VulkanWrappers/DebugUtilsMessenger.cpp	/^DebugUtilsMessenger::DebugUtilsMessenger(DebugUtilsMessenger&& rhs) :$/;"	f	class:DebugUtilsMessenger
+DebugUtilsMessenger	VulkanWrappers/DebugUtilsMessenger.cpp	/^DebugUtilsMessenger::DebugUtilsMessenger(DebugUtilsMessenger&& rhs)$/;"	f	class:DebugUtilsMessenger
+DebugUtilsMessenger	VulkanWrappers/DebugUtilsMessenger.cpp	/^DebugUtilsMessenger::DebugUtilsMessenger(VkInstance instance)$/;"	f	class:DebugUtilsMessenger
+DebugUtilsMessenger	VulkanWrappers/DebugUtilsMessenger.cpp	/^DebugUtilsMessenger::DebugUtilsMessenger(VkInstance instance, const VkDebugUtilsMessengerCreateI/;"	f	class:DebugUtilsMessenger
+DebugUtilsMessenger	VulkanWrappers/DebugUtilsMessenger.h	/^class DebugUtilsMessenger$/;"	c
 Fence	./VulkanWrappers/Fence.cpp	/^Fence::Fence(Fence&& rhs) :$/;"	f	class:Fence
 Fence	./VulkanWrappers/Fence.cpp	/^Fence::Fence(VkDevice device, const VkFenceCreateInfo& createInfo)$/;"	f	class:Fence
 Fence	./VulkanWrappers/Fence.h	/^class Fence$/;"	c
@@ -222,6 +227,7 @@ getHandle	./VulkanWrappers/Semaphore.cpp	/^VkSemaphore Semaphore::getHandle()$/;
 getHandle	./VulkanWrappers/Surface.cpp	/^VkSurfaceKHR Surface::getHandle()$/;"	f	class:Surface	typeref:typename:VkSurfaceKHR
 getHandle	./VulkanWrappers/Swapchain.cpp	/^VkSwapchainKHR Swapchain::getHandle()$/;"	f	class:Swapchain	typeref:typename:VkSwapchainKHR
 getHandle	VulkanWrappers/CommandPool.cpp	/^VkCommandPool CommandPool::getHandle()$/;"	f	class:CommandPool	typeref:typename:VkCommandPool
+getHandle	VulkanWrappers/DebugUtilsMessenger.cpp	/^VkDebugUtilsMessengerEXT DebugUtilsMessenger::getHandle()$/;"	f	class:DebugUtilsMessenger	typeref:typename:VkDebugUtilsMessengerEXT
 getHandle	VulkanWrappers/Fence.cpp	/^VkFence Fence::getHandle()$/;"	f	class:Fence	typeref:typename:VkFence
 getHandle	VulkanWrappers/Framebuffer.cpp	/^VkFramebuffer Framebuffer::getHandle()$/;"	f	class:Framebuffer	typeref:typename:VkFramebuffer
 getHandle	VulkanWrappers/ImageView.cpp	/^VkImageView ImageView::getHandle()$/;"	f	class:ImageView	typeref:typename:VkImageView
@@ -292,11 +298,13 @@ handle	./VulkanWrappers/Semaphore.h	/^    VkSemaphore handle;$/;"	m	class:Semaph
 handle	./VulkanWrappers/Surface.h	/^    VkSurfaceKHR handle;$/;"	m	class:Surface	typeref:typename:VkSurfaceKHR
 handle	./VulkanWrappers/Swapchain.h	/^    VkSwapchainKHR handle;$/;"	m	class:Swapchain	typeref:typename:VkSwapchainKHR
 handle	VulkanWrappers/CommandPool.h	/^    VkCommandPool handle;$/;"	m	class:CommandPool	typeref:typename:VkCommandPool
+handle	VulkanWrappers/DebugUtilsMessenger.h	/^    VkDebugUtilsMessengerEXT handle;$/;"	m	class:DebugUtilsMessenger	typeref:typename:VkDebugUtilsMessengerEXT
 initVulkanAndGLFW	./GLFWwrappers/GLFWmanager.cpp	/^void GLFWmanager::initVulkanAndGLFW()$/;"	f	class:GLFWmanager	typeref:typename:void
 instance	./GLFWwrappers/GLFWmanager.cpp	/^GLFWmanager* GLFWmanager::instance = nullptr;$/;"	m	class:GLFWmanager	typeref:typename:GLFWmanager *
 instance	./GLFWwrappers/GLFWmanager.h	/^    static GLFWmanager* instance;$/;"	m	class:GLFWmanager	typeref:typename:GLFWmanager *
 instance	./VulkanWrappers/Surface.h	/^    VkInstance instance;$/;"	m	class:Surface	typeref:typename:VkInstance
 instance	Rendering/RenderingManager.h	/^    Instance instance;$/;"	m	class:RenderingManager	typeref:typename:Instance
+instance	VulkanWrappers/DebugUtilsMessenger.h	/^    VkInstance instance;$/;"	m	class:DebugUtilsMessenger	typeref:typename:VkInstance
 isASubsetOfB	./Utility/Utility.cpp	/^bool isASubsetOfB(const std::vector<const char*>& A, const std::vector<const char*>& B)$/;"	f	typeref:typename:bool
 isASubsetOfB	Utility/Utility.cpp	/^bool isASubsetOfB(const std::vector<const char*>& A, const std::vector<const char*>& B)$/;"	f	typeref:typename:bool
 isPhysicalDeviceSuitable	./Rendering/RenderingDevice.cpp	/^bool isPhysicalDeviceSuitable(VkInstance instance, VkPhysicalDevice physicalDevice, VkSurfaceKHR/;"	f	typeref:typename:bool
@@ -319,6 +327,7 @@ operator =	./VulkanWrappers/Swapchain.cpp	/^Swapchain& Swapchain::operator=(Swap
 operator =	Rendering/RenderingDevice.cpp	/^RenderingDevice& RenderingDevice::operator=(RenderingDevice&& rhs)$/;"	f	class:RenderingDevice	typeref:typename:RenderingDevice &
 operator =	Rendering/RenderingSwapchain.cpp	/^RenderingSwapchain& RenderingSwapchain::operator=(RenderingSwapchain&& rhs)$/;"	f	class:RenderingSwapchain	typeref:typename:RenderingSwapchain &
 operator =	VulkanWrappers/CommandPool.cpp	/^CommandPool& CommandPool::operator=(CommandPool&& rhs)$/;"	f	class:CommandPool	typeref:typename:CommandPool &
+operator =	VulkanWrappers/DebugUtilsMessenger.cpp	/^DebugUtilsMessenger& DebugUtilsMessenger::operator=(DebugUtilsMessenger&& rhs)$/;"	f	class:DebugUtilsMessenger	typeref:typename:DebugUtilsMessenger &
 operator =	VulkanWrappers/Fence.cpp	/^Fence& Fence::operator=(Fence&& rhs)$/;"	f	class:Fence	typeref:typename:Fence &
 operator =	VulkanWrappers/Framebuffer.cpp	/^Framebuffer& Framebuffer::operator=(Framebuffer&& rhs)$/;"	f	class:Framebuffer	typeref:typename:Framebuffer &
 operator =	VulkanWrappers/ImageView.cpp	/^ImageView& ImageView::operator=(ImageView&& rhs)$/;"	f	class:ImageView	typeref:typename:ImageView &
@@ -350,6 +359,7 @@ x	./Rendering/Vertex.h	/^    float x, y, z;$/;"	m	struct:vec3	typeref:typename:f
 y	./Rendering/Vertex.h	/^    float x, y, z;$/;"	m	struct:vec3	typeref:typename:float
 z	./Rendering/Vertex.h	/^    float x, y, z;$/;"	m	struct:vec3	typeref:typename:float
 ~CommandPool	VulkanWrappers/CommandPool.cpp	/^CommandPool::~CommandPool()$/;"	f	class:CommandPool
+~DebugUtilsMessenger	VulkanWrappers/DebugUtilsMessenger.cpp	/^DebugUtilsMessenger::~DebugUtilsMessenger()$/;"	f	class:DebugUtilsMessenger
 ~Fence	./VulkanWrappers/Fence.cpp	/^Fence::~Fence()$/;"	f	class:Fence
 ~Fence	VulkanWrappers/Fence.cpp	/^Fence::~Fence()$/;"	f	class:Fence
 ~Framebuffer	./VulkanWrappers/Framebuffer.cpp	/^Framebuffer::~Framebuffer()$/;"	f	class:Framebuffer
