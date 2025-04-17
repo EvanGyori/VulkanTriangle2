@@ -142,7 +142,9 @@ __anone99712860602	./VulkanWrappers/EnumerationHelpers.h	/^	enumerateArray<VkSur
 __anone99712860702	./VulkanWrappers/EnumerationHelpers.h	/^	enumerateArray<VkImage>([device, swapchain](uint32_t* count, VkImage* elements) {$/;"	f	function:getSwapchainImagesKHR	file:
 acquiredImageSemaphore	Rendering/RenderingManager.h	/^    Semaphore acquiredImageSemaphore, finishedRenderingSemaphore;$/;"	m	class:RenderingManager	typeref:typename:Semaphore
 areExtensionsSupported	./Rendering/InstanceHelpers.cpp	/^bool areExtensionsSupported(const std::vector<const char*>& extensions)$/;"	f	typeref:typename:bool
+areExtensionsSupported	Rendering/InstanceHelpers.cpp	/^bool areExtensionsSupported(const std::vector<const char*>& extensions)$/;"	f	typeref:typename:bool
 areLayersSupported	./Rendering/InstanceHelpers.cpp	/^bool areLayersSupported(const std::vector<const char*>& layers)$/;"	f	typeref:typename:bool
+areLayersSupported	Rendering/InstanceHelpers.cpp	/^bool areLayersSupported(const std::vector<const char*>& layers)$/;"	f	typeref:typename:bool
 blendConstants	Rendering/GraphicsPipelineHelpers.cpp	/^static float blendConstants[4] = { 1.0f, 1.0f, 1.0f, 1.0f };$/;"	v	typeref:typename:float[4]	file:
 checkVkResult	./GLFWwrappers/VulkanWithGLFW.h	/^inline void checkVkResult(VkResult result, const char* filename, int lineNumber)$/;"	f	typeref:typename:void
 clamp	./Utility/Utility.h	/^T clamp(T x, T min, T max)$/;"	f	typeref:typename:T
@@ -151,6 +153,7 @@ commandBuffer	Rendering/RenderingManager.h	/^    VkCommandBuffer commandBuffer;$
 commandPool	Rendering/RenderingManager.h	/^    CommandPool commandPool;$/;"	m	class:RenderingManager	typeref:typename:CommandPool
 createBinarySemaphore	./Rendering/SynchronizationHelpers.cpp	/^Semaphore createBinarySemaphore(VkDevice device)$/;"	f	typeref:typename:Semaphore
 createBinarySemaphore	Rendering/SynchronizationHelpers.cpp	/^Semaphore createBinarySemaphore(VkDevice device)$/;"	f	typeref:typename:Semaphore
+createDebugger	Rendering/DebugUtilsMessengerHelpers.cpp	/^DebugUtilsMessenger createDebugger(VkInstance instance)$/;"	f	typeref:typename:DebugUtilsMessenger
 createEmptyPipelineLayout	Rendering/GraphicsPipelineHelpers.cpp	/^PipelineLayout createEmptyPipelineLayout()$/;"	f	typeref:typename:PipelineLayout
 createEmptyPipelineLayout	Rendering/GraphicsPipelineHelpers.cpp	/^PipelineLayout createEmptyPipelineLayout(VkDevice device)$/;"	f	typeref:typename:PipelineLayout
 createFence	./Rendering/SynchronizationHelpers.cpp	/^Fence createFence(VkDevice device)$/;"	f	typeref:typename:Fence
@@ -158,10 +161,13 @@ createFence	Rendering/SynchronizationHelpers.cpp	/^Fence createFence(VkDevice de
 createRenderingCommandPool	Rendering/CommandPoolHelpers.cpp	/^CommandPool createRenderingCommandPool(VkDevice device, uint32_t graphicsQueueFamilyIndex)$/;"	f	typeref:typename:CommandPool
 createRenderingImageView	./Rendering/ImageViewHelpers.cpp	/^ImageView createRenderingImageView(VkDevice device, VkImage image)$/;"	f	typeref:typename:ImageView
 createRenderingInstance	./Rendering/InstanceHelpers.cpp	/^Instance createRenderingInstance()$/;"	f	typeref:typename:Instance
+createRenderingInstance	Rendering/InstanceHelpers.cpp	/^Instance createRenderingInstance()$/;"	f	typeref:typename:Instance
 createRenderingPipeline	./Rendering/GraphicsPipelineHelpers.cpp	/^Pipeline createRenderingPipeline(VkDevice device, VkRenderPass renderPass, VkPipelineLayout layo/;"	f	typeref:typename:Pipeline
 createRenderingPipeline	Rendering/GraphicsPipelineHelpers.cpp	/^Pipeline createRenderingPipeline($/;"	f	typeref:typename:Pipeline
 createRenderingRenderPass	./Rendering/RenderPassHelpers.cpp	/^RenderPass createRenderingRenderPass(VkDevice device)$/;"	f	typeref:typename:RenderPass
 createRenderingRenderPass	Rendering/RenderPassHelpers.cpp	/^RenderPass createRenderingRenderPass(VkDevice device)$/;"	f	typeref:typename:RenderPass
+debugCallback	Rendering/DebugUtilsMessengerHelpers.cpp	/^VkBool32 VKAPI_PTR debugCallback($/;"	f	typeref:typename:VkBool32 VKAPI_PTR
+debugMessenger	Rendering/RenderingManager.h	/^    DebugUtilsMessenger debugMessenger;$/;"	m	class:RenderingManager	typeref:typename:DebugUtilsMessenger
 defaultQueuePriority	./Rendering/RenderingDevice.cpp	/^const float defaultQueuePriority = 1.0f;$/;"	v	typeref:typename:const float
 defaultQueuePriority	Rendering/RenderingDevice.cpp	/^const float defaultQueuePriority = 1.0f;$/;"	v	typeref:typename:const float
 device	./VulkanWrappers/Fence.h	/^    VkDevice device;$/;"	m	class:Fence	typeref:typename:VkDevice
@@ -197,6 +203,7 @@ finishedRenderingSemaphore	Rendering/RenderingManager.h	/^    Semaphore finished
 framebuffers	./Rendering/RenderingSwapchain.h	/^    std::vector<RenderingFramebuffer> framebuffers;$/;"	m	class:RenderingSwapchain	typeref:typename:std::vector<RenderingFramebuffer>
 framebuffers	Rendering/RenderingSwapchain.h	/^    std::vector<RenderingFramebuffer> framebuffers;$/;"	m	class:RenderingSwapchain	typeref:typename:std::vector<RenderingFramebuffer>
 getApplicationInfo	./Rendering/InstanceHelpers.cpp	/^VkApplicationInfo getApplicationInfo()$/;"	f	typeref:typename:VkApplicationInfo
+getApplicationInfo	Rendering/InstanceHelpers.cpp	/^VkApplicationInfo getApplicationInfo()$/;"	f	typeref:typename:VkApplicationInfo
 getAttachmentDescriptions	./Rendering/RenderPassHelpers.cpp	/^std::vector<VkAttachmentDescription> getAttachmentDescriptions()$/;"	f	typeref:typename:std::vector<VkAttachmentDescription>
 getAttachmentDescriptions	Rendering/RenderPassHelpers.cpp	/^std::vector<VkAttachmentDescription> getAttachmentDescriptions()$/;"	f	typeref:typename:std::vector<VkAttachmentDescription>
 getAttributeBindings	./Rendering/GraphicsPipelineHelpers.cpp	/^std::vector<VkVertexInputAttributeDescription> getAttributeBindings()$/;"	f	typeref:typename:std::vector<VkVertexInputAttributeDescription>
@@ -207,11 +214,14 @@ getColorBlendInfo	Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineColorBlendSt
 getColorBlendInfo	Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineColorBlendStateCreateInfo getColorBlendInfo()$/;"	f	typeref:typename:VkPipelineColorBlendStateCreateInfo
 getCompositeAlpha	./Rendering/RenderingSwapchain.cpp	/^VkCompositeAlphaFlagBitsKHR getCompositeAlpha(VkSurfaceCapabilitiesKHR surfaceCapabilities)$/;"	f	typeref:typename:VkCompositeAlphaFlagBitsKHR
 getCompositeAlpha	Rendering/RenderingSwapchain.cpp	/^VkCompositeAlphaFlagBitsKHR getCompositeAlpha(VkSurfaceCapabilitiesKHR surfaceCapabilities)$/;"	f	typeref:typename:VkCompositeAlphaFlagBitsKHR
+getDebuggerCreateInfo	Rendering/DebugUtilsMessengerHelpers.cpp	/^VkDebugUtilsMessengerCreateInfoEXT getDebuggerCreateInfo()$/;"	f	typeref:typename:VkDebugUtilsMessengerCreateInfoEXT
 getFileData	./Utility/Utility.cpp	/^std::vector<char> getFileData(const char* filename)$/;"	f	typeref:typename:std::vector<char>
 getFileData	Utility/Utility.cpp	/^std::vector<char> getFileData(const char* filename)$/;"	f	typeref:typename:std::vector<char>
 getFramebuffer	./Rendering/RenderingSwapchain.cpp	/^const RenderingFramebuffer& RenderingSwapchain::getFramebuffer(uint32_t imageIndex)$/;"	f	class:RenderingSwapchain	typeref:typename:const RenderingFramebuffer &
 getFramebuffer	Rendering/RenderingSwapchain.cpp	/^RenderingFramebuffer& RenderingSwapchain::getFramebuffer(uint32_t imageIndex)$/;"	f	class:RenderingSwapchain	typeref:typename:RenderingFramebuffer &
 getFramebuffer	Rendering/RenderingSwapchain.cpp	/^const RenderingFramebuffer& RenderingSwapchain::getFramebuffer(uint32_t imageIndex)$/;"	f	class:RenderingSwapchain	typeref:typename:const RenderingFramebuffer &
+getFunction_vkCreateDebugUtilsMessengerEXT	VulkanWrappers/DebugUtilsMessenger.cpp	/^PFN_vkCreateDebugUtilsMessengerEXT getFunction_vkCreateDebugUtilsMessengerEXT(VkInstance instanc/;"	f	typeref:typename:PFN_vkCreateDebugUtilsMessengerEXT
+getFunction_vkDestroyDebugUtilsMessengerEXT	VulkanWrappers/DebugUtilsMessenger.cpp	/^PFN_vkDestroyDebugUtilsMessengerEXT getFunction_vkDestroyDebugUtilsMessengerEXT(VkInstance insta/;"	f	typeref:typename:PFN_vkDestroyDebugUtilsMessengerEXT
 getGraphicsQueueFamily	./Rendering/RenderingDevice.cpp	/^const QueueFamily& RenderingDevice::getGraphicsQueueFamily()$/;"	f	class:RenderingDevice	typeref:typename:const QueueFamily &
 getGraphicsQueueFamily	Rendering/RenderingDevice.cpp	/^const QueueFamily& RenderingDevice::getGraphicsQueueFamily()$/;"	f	class:RenderingDevice	typeref:typename:const QueueFamily &
 getHandle	./GLFWwrappers/Window.cpp	/^GLFWwindow* Window::getHandle()$/;"	f	class:Window	typeref:typename:GLFWwindow *
@@ -237,6 +247,11 @@ getImageExtent	./Rendering/RenderingSwapchain.cpp	/^VkExtent2D getImageExtent(Vk
 getImageExtent	Rendering/RenderingSwapchain.cpp	/^VkExtent2D getImageExtent(VkSurfaceCapabilitiesKHR surfaceCapabilities, GLFWwindow* window)$/;"	f	typeref:typename:VkExtent2D
 getInputAssemblyInfo	./Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineInputAssemblyStateCreateInfo getInputAssemblyInfo()$/;"	f	typeref:typename:VkPipelineInputAssemblyStateCreateInfo
 getInputAssemblyInfo	Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineInputAssemblyStateCreateInfo getInputAssemblyInfo()$/;"	f	typeref:typename:VkPipelineInputAssemblyStateCreateInfo
+getMessageSeverityString	Rendering/DebugUtilsMessengerHelpers.cpp	/^const char* getMessageSeverityString(VkDebugUtilsMessageSeverityFlagBitsEXT severityFlag)$/;"	f	typeref:typename:const char *
+getMessageSeverityString	Rendering/DebugUtilsMessengerHelpers.cpp	/^const char* getMessageSeverityString(VkDebugutilsMessageSeverityFlagBitsEXT severityFlag)$/;"	f	typeref:typename:const char *
+getMessageTypesString	Rendering/DebugUtilsMessengerHelpers.cpp	/^const char* getMessageTypesString(VkDebugUtilsMessageTypeFlagsEXT typeFlags)$/;"	f	typeref:typename:const char *
+getMessageTypesString	Rendering/DebugUtilsMessengerHelpers.cpp	/^const char* getMessageTypesString(VkDebugutilsMessageTypeFlagsEXT typeFlags)$/;"	f	typeref:typename:const char *
+getMessageTypesString	Rendering/DebugUtilsMessengerHelpers.cpp	/^std::string getMessageTypesString(VkDebugUtilsMessageTypeFlagsEXT typeFlags)$/;"	f	typeref:typename:std::string
 getMinImageCount	./Rendering/RenderingSwapchain.cpp	/^uint32_t getMinImageCount(VkSurfaceCapabilitiesKHR surfaceCapabilities)$/;"	f	typeref:typename:uint32_t
 getMinImageCount	Rendering/RenderingSwapchain.cpp	/^uint32_t getMinImageCount(VkSurfaceCapabilitiesKHR surfaceCapabilities)$/;"	f	typeref:typename:uint32_t
 getMultisampleInfo	./Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineMultisampleStateCreateInfo getMultisampleInfo()$/;"	f	typeref:typename:VkPipelineMultisampleStateCreateInfo
@@ -260,9 +275,11 @@ getRenderArea	Rendering/RenderingManager.cpp	/^VkRect2D RenderingManager::getRen
 getRequiredDeviceExtensions	./Rendering/RenderingDevice.cpp	/^std::vector<const char*> getRequiredDeviceExtensions()$/;"	f	typeref:typename:std::vector<const char * >
 getRequiredDeviceExtensions	Rendering/RenderingDevice.cpp	/^std::vector<const char*> getRequiredDeviceExtensions()$/;"	f	typeref:typename:std::vector<const char * >
 getRequiredExtensions	./Rendering/InstanceHelpers.cpp	/^std::vector<const char*> getRequiredExtensions()$/;"	f	typeref:typename:std::vector<const char * >
+getRequiredExtensions	Rendering/InstanceHelpers.cpp	/^std::vector<const char*> getRequiredExtensions()$/;"	f	typeref:typename:std::vector<const char * >
 getRequiredFeatures	./Rendering/RenderingDevice.cpp	/^VkPhysicalDeviceFeatures getRequiredFeatures()$/;"	f	typeref:typename:VkPhysicalDeviceFeatures
 getRequiredFeatures	Rendering/RenderingDevice.cpp	/^VkPhysicalDeviceFeatures getRequiredFeatures()$/;"	f	typeref:typename:VkPhysicalDeviceFeatures
 getRequiredLayers	./Rendering/InstanceHelpers.cpp	/^std::vector<const char*> getRequiredLayers()$/;"	f	typeref:typename:std::vector<const char * >
+getRequiredLayers	Rendering/InstanceHelpers.cpp	/^std::vector<const char*> getRequiredLayers()$/;"	f	typeref:typename:std::vector<const char * >
 getScissor	./Rendering/GraphicsPipelineHelpers.cpp	/^VkRect2D getScissor()$/;"	f	typeref:typename:VkRect2D
 getScissor	Rendering/GraphicsPipelineHelpers.cpp	/^VkRect2D getScissor()$/;"	f	typeref:typename:VkRect2D
 getScissor	Rendering/GraphicsPipelineHelpers.cpp	/^VkRect2D getScissor(GLFWwindow* window)$/;"	f	typeref:typename:VkRect2D

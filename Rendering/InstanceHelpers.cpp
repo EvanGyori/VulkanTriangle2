@@ -7,6 +7,7 @@
 
 #include "EnumerationHelpers.h"
 #include "Utility.h"
+#include "DebugUtilsMessengerHelpers.h"
 
 std::vector<const char*> getRequiredExtensions();
 
@@ -33,8 +34,11 @@ Instance createRenderingInstance()
 
     VkApplicationInfo appInfo = getApplicationInfo();
 
+    VkDebugUtilsMessengerCreateInfoEXT debuggerCreateInfo = getDebuggerCreateInfo();
+
     VkInstanceCreateInfo createInfo = {};
     createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+    createInfo.pNext = &debuggerCreateInfo;
     createInfo.pApplicationInfo = &appInfo;
     createInfo.enabledLayerCount = layers.size();
     createInfo.ppEnabledLayerNames = &layers.front();
@@ -50,6 +54,8 @@ std::vector<const char*> getRequiredExtensions()
     const char** glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
 
     std::vector<const char*> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
+
+    extensions.push_back("VK_EXT_debug_utils");
 
     return extensions;
 }
@@ -85,6 +91,6 @@ VkApplicationInfo getApplicationInfo()
 {
     VkApplicationInfo appInfo = {};
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-    appInfo.apiVersion = VK_API_VERSION_1_4;
+    appInfo.apiVersion = VK_API_VERSION_1_3;
     return appInfo;
 }

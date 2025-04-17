@@ -1,14 +1,26 @@
 #include "DebugUtilsMessenger.h"
 
+PFN_vkCreateDebugUtilsMessengerEXT getFunction_vkCreateDebugUtilsMessengerEXT(VkInstance instance)
+{
+    return reinterpret_cast<PFN_vkCreateDebugUtilsMessengerEXT>(
+	    vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT"));
+}
+
+PFN_vkDestroyDebugUtilsMessengerEXT getFunction_vkDestroyDebugUtilsMessengerEXT(VkInstance instance)
+{
+    return reinterpret_cast<PFN_vkDestroyDebugUtilsMessengerEXT>(
+	    vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT"));
+}
+
 DebugUtilsMessenger::DebugUtilsMessenger(VkInstance instance, const VkDebugUtilsMessengerCreateInfoEXT& createInfo) :
     instance(instance)
 {
-    VK_CHECK(vkCreateDebugUtilsMessengerEXT(instance, &createInfo, nullptr, &handle));
+    VK_CHECK(getFunction_vkCreateDebugUtilsMessengerEXT(instance)(instance, &createInfo, nullptr, &handle));
 }
 
 DebugUtilsMessenger::~DebugUtilsMessenger()
 {
-    vkDestroyDebugUtilsMessengerEXT(instance, handle, nullptr);
+    getFunction_vkDestroyDebugUtilsMessengerEXT(instance)(instance, handle, nullptr);
 }
 
 DebugUtilsMessenger::DebugUtilsMessenger(DebugUtilsMessenger&& rhs) :
@@ -20,7 +32,7 @@ DebugUtilsMessenger::DebugUtilsMessenger(DebugUtilsMessenger&& rhs) :
 
 DebugUtilsMessenger& DebugUtilsMessenger::operator=(DebugUtilsMessenger&& rhs)
 {
-    vkDestroyDebugUtilsMessengerEXT(instance, handle, nullptr);
+    getFunction_vkDestroyDebugUtilsMessengerEXT(instance)(instance, handle, nullptr);
 
     instance = rhs.instance;
     handle = rhs.handle;

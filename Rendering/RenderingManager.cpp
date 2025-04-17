@@ -3,6 +3,7 @@
 #include <limits>
 
 #include "InstanceHelpers.h"
+#include "DebugUtilsMessengerHelpers.h"
 #include "SynchronizationHelpers.h"
 #include "RenderPassHelpers.h"
 #include "GraphicsPipelineHelpers.h"
@@ -11,6 +12,7 @@
 RenderingManager::RenderingManager() :
     window(),
     instance(createRenderingInstance()),
+    debugMessenger(createDebugger(instance.getHandle())),
     windowSurface(instance.getHandle(), window.getHandle()),
     device(instance.getHandle(), windowSurface.getHandle()),
     acquiredImageSemaphore(createBinarySemaphore(device.getHandle())),

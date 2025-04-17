@@ -4,6 +4,7 @@
 
 #include "Window.h"
 #include "Instance.h"
+#include "DebugUtilsMessenger.h"
 #include "Surface.h"
 #include "RenderingDevice.h"
 #include "Semaphore.h"
@@ -34,6 +35,7 @@ public:
 private:
     Window window;
     Instance instance;
+    DebugUtilsMessenger debugMessenger;
     Surface windowSurface;
     RenderingDevice device;
     Semaphore acquiredImageSemaphore, finishedRenderingSemaphore;
