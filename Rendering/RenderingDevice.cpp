@@ -207,10 +207,16 @@ bool doesPhysicalDeviceSupportRequiredSurfaceFormats(VkPhysicalDevice physicalDe
 
 bool isPhysicalDeviceSuitable(VkInstance instance, VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
 {
+    // experimenting: transfer dst format feature is required for clearing an image outside of a render pass instance
+    VkFormatProperties formatProperties;
+    vkGetPhysicalDeviceFormatProperties(physicalDevice, VK_FORMAT_R8G8B8A8_SRGB, &formatProperties);
+    bool hasRequiredFormatFeature = formatProperties.optimalTilingFeatures & VK_FORMAT_FEATURE_TRANSFER_DST_BIT;
+
     return doesPhysicalDeviceSupportExtensions(physicalDevice, getRequiredDeviceExtensions())
 	&& doesPhysicalDeviceSupportFeatures(physicalDevice, getRequiredFeatures())
 	&& doesPhysicalDeviceSupportRequiredQueueCapabilities(instance, physicalDevice)
-	&& doesPhysicalDeviceSupportRequiredSurfaceFormats(physicalDevice, surface);
+	&& doesPhysicalDeviceSupportRequiredSurfaceFormats(physicalDevice, surface)
+	&& hasRequiredFormatFeature;
 }
 
 VkPhysicalDevice findPhysicalDevice(VkInstance instance, VkSurfaceKHR surface)

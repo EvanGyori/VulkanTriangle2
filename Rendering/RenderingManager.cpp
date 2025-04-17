@@ -8,6 +8,7 @@
 #include "RenderPassHelpers.h"
 #include "GraphicsPipelineHelpers.h"
 #include "CommandPoolHelpers.h"
+#include "EnumerationHelpers.h"
 
 RenderingManager::RenderingManager() :
     window(),
@@ -108,6 +109,8 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
 
     VK_CHECK(vkBeginCommandBuffer(commandBuffer, &beginInfo));
 
+    /*
+
     // Sets all color values to 0, which gives black
     VkClearValue clearValue = {};
 
@@ -125,9 +128,69 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
 
     // TODO bind a vertex buffer
 
+    VkClearAttachment clearAttachment = {};
+    clearAttachment.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+    clearAttachment.colorAttachment = 0;
+    clearAttachment.clearValue.color.float32[0] = 1.0f;
+
+    int width, height;
+    glfwGetFramebufferSize(window.getHandle(), &width, &height);
+
+    VkClearRect clearRect = {};
+    clearRect.rect = { { static_cast<int32_t>(width) / 2, static_cast<int32_t>(height) / 2 }, { 200, 200 } };
+    clearRect.layerCount = 1;
+
+    vkCmdClearAttachments(commandBuffer, 1, &clearAttachment, 1, &clearRect);
+
     vkCmdDraw(commandBuffer, buffer.size(), 1, 0, 0);
 
     vkCmdEndRenderPass(commandBuffer);
+
+    */
+
+    static float val = 0.0f;
+    val += 0.01f;
+    if (val > 1.0f) {
+	val = 0.0f;
+    }
+
+    VkClearColorValue clearValue = {};
+    clearValue.float32[1] = val;
+
+    VkImageSubresourceRange subresourceRange = {};
+    subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+    subresourceRange.levelCount = 1;
+    subresourceRange.layerCount = 1;
+
+    auto images = getSwapchainImagesKHR(device.getHandle(), swapchain.getHandle());
+
+    VkImageMemoryBarrier imageMemoryBarrier = {};
+    imageMemoryBarrier.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+    imageMemoryBarrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+    imageMemoryBarrier.dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+    imageMemoryBarrier.oldLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+    imageMemoryBarrier.newLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
+    imageMemoryBarrier.image = images[imageIndex];
+    imageMemoryBarrier.subresourceRange = subresourceRange;
+
+    // Perform an image layout transition to the necessary layout for clearing. The clear operation from the previous frame is available since this waits on the fence which waits till it is available. However, it is not visible. So use the memory barrier to make it visible to the clear operation. Also have the clear operation wait till the image layout transition has been completed and made visible.
+    vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT, VK_PIPELINE_STAGE_TRANSFER_BIT,
+	    0, 0, nullptr, 0, nullptr, 1, &imageMemoryBarrier);
+
+    vkCmdClearColorImage(commandBuffer, images[imageIndex], VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, &clearValue, 1, &subresourceRange);
+
+    imageMemoryBarrier = {};
+    imageMemoryBarrier.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+    imageMemoryBarrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+    imageMemoryBarrier.dstAccessMask = 0; // visibility operation automatically performed by VkQueuePresentKHR. Availability operation also performed since VkQueuePresentKHR waits on the semaphore signaled by completion of this command buffer
+    imageMemoryBarrier.oldLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
+    imageMemoryBarrier.newLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+    imageMemoryBarrier.image = images[imageIndex];
+    imageMemoryBarrier.subresourceRange = subresourceRange;
+
+    // Just perform the necessary image layout transition to the present src layout. Wait on the memory writes performed by the clear for the transition but have no memory accesses wait on it.
+    vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT,
+	    0, 0, nullptr, 0, nullptr, 1, &imageMemoryBarrier);
 
     VK_CHECK(vkEndCommandBuffer(commandBuffer));
 }
