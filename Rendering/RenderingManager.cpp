@@ -109,8 +109,6 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
 
     VK_CHECK(vkBeginCommandBuffer(commandBuffer, &beginInfo));
 
-    /*
-
     // Sets all color values to 0, which gives black
     VkClearValue clearValue = {};
 
@@ -128,6 +126,7 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
 
     // TODO bind a vertex buffer
 
+    /*
     VkClearAttachment clearAttachment = {};
     clearAttachment.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
     clearAttachment.colorAttachment = 0;
@@ -141,13 +140,13 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
     clearRect.layerCount = 1;
 
     vkCmdClearAttachments(commandBuffer, 1, &clearAttachment, 1, &clearRect);
+    */
 
-    vkCmdDraw(commandBuffer, buffer.size(), 1, 0, 0);
+    vkCmdDraw(commandBuffer, 6, 1, 0, 0);
 
     vkCmdEndRenderPass(commandBuffer);
 
-    */
-
+    /*
     static float val = 0.0f;
     val += 0.01f;
     if (val > 1.0f) {
@@ -191,6 +190,7 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
     // Just perform the necessary image layout transition to the present src layout. Wait on the memory writes performed by the clear for the transition but have no memory accesses wait on it.
     vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT,
 	    0, 0, nullptr, 0, nullptr, 1, &imageMemoryBarrier);
+    */
 
     VK_CHECK(vkEndCommandBuffer(commandBuffer));
 }

@@ -1,9 +1,12 @@
 #version 430
 
-vec3 positions[3] = vec3[](
+vec3 positions[6] = vec3[](
     vec3(-0.5f, 0.5f, 1.0f),
     vec3(0.5f, 0.5f, 1.0f),
-    vec3(0.0f, -0.5f, 1.0f)
+    vec3(0.0f, -0.5f, 1.0f),
+    vec3(0.0f, 0.5f, 1.0f),
+    vec3(1.0f, 0.5f, 1.0f),
+    vec3(0.5f, -0.5f, 1.0f)
 );
 
 vec3 colors[3] = vec3[](
@@ -24,6 +27,6 @@ void main()
     vColor = color;
     */
 
-    gl_Position = vec4(positions[gl_VertexIndex], 1.0);
-    vColor = colors[gl_VertexIndex];
+    gl_Position = vec4(positions[gl_VertexIndex % 6], 1.0);
+    vColor = colors[(gl_VertexIndex / 3) % 2];
 }
