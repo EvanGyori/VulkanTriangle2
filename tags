@@ -66,6 +66,9 @@ GLFW_INCLUDE_VULKAN	./GLFWwrappers/VulkanWithGLFW.h	/^#define GLFW_INCLUDE_VULKA
 GLFWmanager	./GLFWwrappers/GLFWmanager.cpp	/^GLFWmanager::GLFWmanager()$/;"	f	class:GLFWmanager
 GLFWmanager	./GLFWwrappers/GLFWmanager.h	/^class GLFWmanager$/;"	c
 GLFWwrappers	./GLFWwrappers/CMakeLists.txt	/^add_library(GLFWwrappers GLFWmanager.cpp Window.cpp)$/;"	t
+Image	VulkanWrappers/Image.cpp	/^Image::Image(Image&& rhs) :$/;"	f	class:Image
+Image	VulkanWrappers/Image.cpp	/^Image::Image(VkDevice device, const VkImageCreateInfo& createInfo) :$/;"	f	class:Image
+Image	VulkanWrappers/Image.h	/^class Image$/;"	c
 ImageView	./VulkanWrappers/ImageView.cpp	/^ImageView::ImageView(ImageView&& rhs) :$/;"	f	class:ImageView
 ImageView	./VulkanWrappers/ImageView.cpp	/^ImageView::ImageView(VkDevice device, const VkImageViewCreateInfo& createInfo) :$/;"	f	class:ImageView
 ImageView	./VulkanWrappers/ImageView.h	/^class ImageView$/;"	c
@@ -159,6 +162,7 @@ device	./VulkanWrappers/Semaphore.h	/^    VkDevice device;$/;"	m	class:Semaphore
 device	./VulkanWrappers/ShaderModule.h	/^    VkDevice device;$/;"	m	class:ShaderModule	typeref:typename:VkDevice
 device	./VulkanWrappers/Swapchain.h	/^    VkDevice device;$/;"	m	class:Swapchain	typeref:typename:VkDevice
 device	VulkanWrappers/DeviceMemory.h	/^    VkDevice device;$/;"	m	class:DeviceMemory	typeref:typename:VkDevice
+device	VulkanWrappers/Image.h	/^    VkDevice device;$/;"	m	class:Image	typeref:typename:VkDevice
 doesPhysicalDeviceSupportExtensions	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportExtensions($/;"	f	typeref:typename:bool
 doesPhysicalDeviceSupportFeatures	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportFeatures($/;"	f	typeref:typename:bool
 doesPhysicalDeviceSupportRequiredQueueCapabilities	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportRequiredQueueCapabilities(VkInstance instance, VkPhysicalDevice ph/;"	f	typeref:typename:bool
@@ -201,6 +205,7 @@ getHandle	./VulkanWrappers/ShaderModule.cpp	/^VkShaderModule ShaderModule::getHa
 getHandle	./VulkanWrappers/Surface.cpp	/^VkSurfaceKHR Surface::getHandle()$/;"	f	class:Surface	typeref:typename:VkSurfaceKHR
 getHandle	./VulkanWrappers/Swapchain.cpp	/^VkSwapchainKHR Swapchain::getHandle()$/;"	f	class:Swapchain	typeref:typename:VkSwapchainKHR
 getHandle	VulkanWrappers/DeviceMemory.cpp	/^VkDeviceMemory DeviceMemory::getHandle()$/;"	f	class:DeviceMemory	typeref:typename:VkDeviceMemory
+getHandle	VulkanWrappers/Image.cpp	/^VkImage Image::getHandle()$/;"	f	class:Image	typeref:typename:VkImage
 getImageExtent	./Rendering/RenderingSwapchain.cpp	/^VkExtent2D getImageExtent(VkSurfaceCapabilitiesKHR surfaceCapabilities, GLFWwindow* window)$/;"	f	typeref:typename:VkExtent2D
 getInputAssemblyInfo	./Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineInputAssemblyStateCreateInfo getInputAssemblyInfo()$/;"	f	typeref:typename:VkPipelineInputAssemblyStateCreateInfo
 getMessageSeverityString	./Rendering/DebugUtilsMessengerHelpers.cpp	/^const char* getMessageSeverityString(VkDebugUtilsMessageSeverityFlagBitsEXT severityFlag)$/;"	f	typeref:typename:const char *
@@ -249,6 +254,7 @@ handle	./VulkanWrappers/ShaderModule.h	/^    VkShaderModule handle;$/;"	m	class:
 handle	./VulkanWrappers/Surface.h	/^    VkSurfaceKHR handle;$/;"	m	class:Surface	typeref:typename:VkSurfaceKHR
 handle	./VulkanWrappers/Swapchain.h	/^    VkSwapchainKHR handle;$/;"	m	class:Swapchain	typeref:typename:VkSwapchainKHR
 handle	VulkanWrappers/DeviceMemory.h	/^    VkDeviceMemory handle;$/;"	m	class:DeviceMemory	typeref:typename:VkDeviceMemory
+handle	VulkanWrappers/Image.h	/^    VkImage handle;$/;"	m	class:Image	typeref:typename:VkImage
 initVulkanAndGLFW	./GLFWwrappers/GLFWmanager.cpp	/^void GLFWmanager::initVulkanAndGLFW()$/;"	f	class:GLFWmanager	typeref:typename:void
 instance	./GLFWwrappers/GLFWmanager.cpp	/^GLFWmanager* GLFWmanager::instance = nullptr;$/;"	m	class:GLFWmanager	typeref:typename:GLFWmanager *
 instance	./GLFWwrappers/GLFWmanager.h	/^    static GLFWmanager* instance;$/;"	m	class:GLFWmanager	typeref:typename:GLFWmanager *
@@ -276,6 +282,7 @@ operator =	./VulkanWrappers/ShaderModule.cpp	/^ShaderModule& ShaderModule::opera
 operator =	./VulkanWrappers/Surface.cpp	/^Surface& Surface::operator=(Surface&& rhs)$/;"	f	class:Surface	typeref:typename:Surface &
 operator =	./VulkanWrappers/Swapchain.cpp	/^Swapchain& Swapchain::operator=(Swapchain&& rhs)$/;"	f	class:Swapchain	typeref:typename:Swapchain &
 operator =	VulkanWrappers/DeviceMemory.cpp	/^DeviceMemory& DeviceMemory::operator=(DeviceMemory&& rhs)$/;"	f	class:DeviceMemory	typeref:typename:DeviceMemory &
+operator =	VulkanWrappers/Image.cpp	/^Image& Image::operator=(Image&& rhs)$/;"	f	class:Image	typeref:typename:Image &
 outputImageView	./Rendering/RenderingFramebuffer.h	/^    ImageView outputImageView;$/;"	m	class:RenderingFramebuffer	typeref:typename:ImageView
 physicalDevice	./VulkanWrappers/LogicalDevice.h	/^    VkPhysicalDevice physicalDevice;$/;"	m	class:LogicalDevice	typeref:typename:VkPhysicalDevice
 pipelineLayout	./Rendering/RenderingManager.h	/^    PipelineLayout pipelineLayout;$/;"	m	class:RenderingManager	typeref:typename:PipelineLayout
@@ -304,6 +311,7 @@ z	./Rendering/Vertex.h	/^    float x, y, z;$/;"	m	struct:vec3	typeref:typename:f
 ~Fence	./VulkanWrappers/Fence.cpp	/^Fence::~Fence()$/;"	f	class:Fence
 ~Framebuffer	./VulkanWrappers/Framebuffer.cpp	/^Framebuffer::~Framebuffer()$/;"	f	class:Framebuffer
 ~GLFWmanager	./GLFWwrappers/GLFWmanager.cpp	/^GLFWmanager::~GLFWmanager()$/;"	f	class:GLFWmanager
+~Image	VulkanWrappers/Image.cpp	/^Image::~Image()$/;"	f	class:Image
 ~ImageView	./VulkanWrappers/ImageView.cpp	/^ImageView::~ImageView()$/;"	f	class:ImageView
 ~Instance	./VulkanWrappers/Instance.cpp	/^Instance::~Instance()$/;"	f	class:Instance
 ~LogicalDevice	./VulkanWrappers/LogicalDevice.cpp	/^LogicalDevice::~LogicalDevice()$/;"	f	class:LogicalDevice
