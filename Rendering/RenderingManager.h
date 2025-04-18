@@ -14,6 +14,7 @@
 #include "PipelineLayout.h"
 #include "Pipeline.h"
 #include "CommandPool.h"
+#include "LinearHostImage.h"
 #include "Vertex.h"
 
 class RenderingManager
@@ -46,8 +47,11 @@ private:
     Pipeline graphicsPipeline;
     CommandPool commandPool;
     VkCommandBuffer commandBuffer;
+    LinearHostImage image;
 
     VkRect2D getRenderArea();
 
     void recordCommandBuffer(const std::vector<Vertex>& buffer, uint32_t imageIndex);
+
+    void writeImage();
 };

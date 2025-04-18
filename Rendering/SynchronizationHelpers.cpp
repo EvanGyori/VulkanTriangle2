@@ -8,11 +8,13 @@ Semaphore createBinarySemaphore(VkDevice device)
     return Semaphore(device, createInfo);
 }
 
-Fence createFence(VkDevice device)
+Fence createFence(VkDevice device, bool initiallySignaled)
 {
     VkFenceCreateInfo createInfo = {};
     createInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
-    createInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
+    if (initiallySignaled) {
+	createInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
+    }
 
     return Fence(device, createInfo);
 }

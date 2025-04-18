@@ -5,4 +5,4 @@
 
 Semaphore createBinarySemaphore(VkDevice device);
 
-Fence createFence(VkDevice device);
+Fence createFence(VkDevice device, bool initiallySignaled = false);

@@ -10,6 +10,8 @@
 #include "CommandPoolHelpers.h"
 #include "EnumerationHelpers.h"
 
+static int getTexelOffset(VkSubresourceLayout layout, int elementSize, int x, int y, int z, int layer);
+
 RenderingManager::RenderingManager() :
     window(),
     instance(createRenderingInstance()),
@@ -18,14 +20,16 @@ RenderingManager::RenderingManager() :
     device(instance.getHandle(), windowSurface.getHandle()),
     acquiredImageSemaphore(createBinarySemaphore(device.getHandle())),
     finishedRenderingSemaphore(createBinarySemaphore(device.getHandle())),
-    finishedRenderingFence(createFence(device.getHandle())),
+    finishedRenderingFence(createFence(device.getHandle(), true)),
     renderPass(createRenderingRenderPass(device.getHandle())),
     swapchain(instance.getHandle(), windowSurface.getHandle(), device, renderPass.getHandle(), window.getHandle()),
     pipelineLayout(createEmptyPipelineLayout(device.getHandle())),
     graphicsPipeline(createRenderingPipeline(device.getHandle(), renderPass.getHandle(), pipelineLayout.getHandle(), window.getHandle())),
     commandPool(createRenderingCommandPool(device.getHandle(), device.getGraphicsQueueFamily().queueFamilyIndex)),
-    commandBuffer(VK_NULL_HANDLE)
+    commandBuffer(VK_NULL_HANDLE),
+    image(device.getHandle(), device.getPhysicalDevice(), window.getHandle())
 {
+    // allocate drawing command buffer
     VkCommandBufferAllocateInfo allocInfo = {};
     allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
     allocInfo.commandPool = commandPool.getHandle();
@@ -33,6 +37,58 @@ RenderingManager::RenderingManager() :
     allocInfo.commandBufferCount = 1;
 
     VK_CHECK(vkAllocateCommandBuffers(device.getHandle(), &allocInfo, &commandBuffer));
+
+    // Transition image layout to general
+    VkCommandBuffer transitionCommandBuffer;
+    VK_CHECK(vkAllocateCommandBuffers(device.getHandle(), &allocInfo, &transitionCommandBuffer));
+
+    VkCommandBufferBeginInfo beginInfo = {};
+    beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+    beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+
+    VK_CHECK(vkBeginCommandBuffer(transitionCommandBuffer, &beginInfo));
+
+    VkImageSubresourceRange subresourceRange = {};
+    subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+    subresourceRange.levelCount = 1;
+    subresourceRange.layerCount = 1;
+
+    VkImageMemoryBarrier barrier = {};
+    barrier.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+    barrier.srcAccessMask = 0;
+    barrier.dstAccessMask = VK_ACCESS_HOST_WRITE_BIT | VK_ACCESS_HOST_READ_BIT;
+    barrier.oldLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+    barrier.newLayout = VK_IMAGE_LAYOUT_GENERAL;
+    barrier.image = image.getHandle();
+    barrier.subresourceRange = subresourceRange;
+
+    vkCmdPipelineBarrier(transitionCommandBuffer,
+	    VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, VK_PIPELINE_STAGE_HOST_BIT,
+	    0, 0, nullptr, 0, nullptr, 1, &barrier);
+    
+    VK_CHECK(vkEndCommandBuffer(transitionCommandBuffer));
+
+    Fence transitionFence = createFence(device.getHandle());
+
+    VkSubmitInfo submitInfo = {};
+    submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+    submitInfo.commandBufferCount = 1;
+    submitInfo.pCommandBuffers = &transitionCommandBuffer;
+
+
+    VK_CHECK(vkQueueSubmit(device.getGraphicsQueueFamily().queues[0], 1, &submitInfo, transitionFence.getHandle()));
+
+    VkFence fenceHandle = transitionFence.getHandle();
+    VK_CHECK(vkWaitForFences(device.getHandle(), 1, &fenceHandle, VK_TRUE, std::numeric_limits<uint64_t>::max()));
+    
+    vkFreeCommandBuffers(device.getHandle(), commandPool.getHandle(), 1, &transitionCommandBuffer);
+
+    VkMappedMemoryRange memoryRange = {};
+    memoryRange.sType = VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE;
+    memoryRange.memory = image.getMemoryHandle();
+    memoryRange.size = VK_WHOLE_SIZE;
+
+    VK_CHECK(vkInvalidateMappedMemoryRanges(device.getHandle(), 1, &memoryRange));
 }
 
 RenderingManager::~RenderingManager()
@@ -55,6 +111,9 @@ void RenderingManager::draw(const std::vector<Vertex>& buffer)
 
     uint32_t imageIndex;
     vkAcquireNextImageKHR(device.getHandle(), swapchain.getHandle(), std::numeric_limits<uint64_t>::max(), acquiredImageSemaphore.getHandle(), VK_NULL_HANDLE, &imageIndex);
+
+    // Temp - write to linear host image before copying it over
+    writeImage();
 
     VK_CHECK(vkResetCommandPool(device.getHandle(), commandPool.getHandle(), 0));
     recordCommandBuffer(buffer, imageIndex);
@@ -104,11 +163,15 @@ VkRect2D RenderingManager::getRenderArea()
 
 void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, uint32_t imageIndex)
 {
+    int width, height;
+    glfwGetFramebufferSize(window.getHandle(), &width, &height);
+
     VkCommandBufferBeginInfo beginInfo = {};
     beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
 
     VK_CHECK(vkBeginCommandBuffer(commandBuffer, &beginInfo));
 
+    /*
     // Sets all color values to 0, which gives black
     VkClearValue clearValue = {};
 
@@ -126,35 +189,25 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
 
     // TODO bind a vertex buffer
 
-    /*
     VkClearAttachment clearAttachment = {};
     clearAttachment.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
     clearAttachment.colorAttachment = 0;
     clearAttachment.clearValue.color.float32[0] = 1.0f;
-
-    int width, height;
-    glfwGetFramebufferSize(window.getHandle(), &width, &height);
 
     VkClearRect clearRect = {};
     clearRect.rect = { { static_cast<int32_t>(width) / 2, static_cast<int32_t>(height) / 2 }, { 200, 200 } };
     clearRect.layerCount = 1;
 
     vkCmdClearAttachments(commandBuffer, 1, &clearAttachment, 1, &clearRect);
-    */
 
     vkCmdDraw(commandBuffer, 6, 1, 0, 0);
 
     vkCmdEndRenderPass(commandBuffer);
+    */
 
     /*
-    static float val = 0.0f;
-    val += 0.01f;
-    if (val > 1.0f) {
-	val = 0.0f;
-    }
-
-    VkClearColorValue clearValue = {};
-    clearValue.float32[1] = val;
+    
+    */
 
     VkImageSubresourceRange subresourceRange = {};
     subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
@@ -175,8 +228,30 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
     // Perform an image layout transition to the necessary layout for clearing. The clear operation from the previous frame is available since this waits on the fence which waits till it is available. However, it is not visible. So use the memory barrier to make it visible to the clear operation. Also have the clear operation wait till the image layout transition has been completed and made visible.
     vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT, VK_PIPELINE_STAGE_TRANSFER_BIT,
 	    0, 0, nullptr, 0, nullptr, 1, &imageMemoryBarrier);
+    /*
+
+    static float val = 0.0f;
+    val += 0.01f;
+    if (val > 1.0f) {
+	val = 0.0f;
+    }
+
+    VkClearColorValue clearValue = {};
+    clearValue.float32[1] = val;
 
     vkCmdClearColorImage(commandBuffer, images[imageIndex], VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, &clearValue, 1, &subresourceRange);
+    */
+
+    VkImageCopy region = {};
+    region.srcSubresource = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1 };
+    region.dstSubresource = region.srcSubresource;
+    region.extent.width = static_cast<uint32_t>(width);
+    region.extent.height = static_cast<uint32_t>(height);
+    region.extent.depth = 1;
+
+    vkCmdCopyImage(commandBuffer, image.getHandle(), VK_IMAGE_LAYOUT_GENERAL,
+	    images[imageIndex], VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+	    1, &region);
 
     imageMemoryBarrier = {};
     imageMemoryBarrier.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
@@ -190,7 +265,38 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
     // Just perform the necessary image layout transition to the present src layout. Wait on the memory writes performed by the clear for the transition but have no memory accesses wait on it.
     vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT,
 	    0, 0, nullptr, 0, nullptr, 1, &imageMemoryBarrier);
-    */
 
     VK_CHECK(vkEndCommandBuffer(commandBuffer));
+}
+
+void RenderingManager::writeImage()
+{
+    VkSubresourceLayout layout;
+
+    VkImageSubresource subresource = {};
+    subresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+    subresource.mipLevel = 0;
+    subresource.arrayLayer = 0;
+
+    vkGetImageSubresourceLayout(device.getHandle(), image.getHandle(), &subresource, &layout);
+
+    // format is VK_FORMAT_R8G8B8A8_SRGB
+    char* data = reinterpret_cast<char*>(image.getData());
+    for (int x = 0; x < 200; x += 3) {
+	for (int y = 0; y < 200; y += 3) {
+	    data[getTexelOffset(layout, 4, x, y, 0, 0)] = 255;
+	}
+    }
+
+    VkMappedMemoryRange memoryRange = {};
+    memoryRange.sType = VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE;
+    memoryRange.memory = image.getMemoryHandle();
+    memoryRange.size = VK_WHOLE_SIZE;
+
+    VK_CHECK(vkFlushMappedMemoryRanges(device.getHandle(), 1, &memoryRange));
+}
+
+int getTexelOffset(VkSubresourceLayout layout, int elementSize, int x, int y, int z, int layer)
+{
+    return layer * layout.arrayPitch + z * layout.depthPitch + y * layout.rowPitch + x * elementSize;
 }
