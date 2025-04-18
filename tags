@@ -63,7 +63,6 @@ Framebuffer	./VulkanWrappers/Framebuffer.h	/^class Framebuffer$/;"	c
 GLFW_INCLUDE_VULKAN	./GLFWwrappers/VulkanWithGLFW.h	/^#define GLFW_INCLUDE_VULKAN$/;"	d
 GLFWmanager	./GLFWwrappers/GLFWmanager.cpp	/^GLFWmanager::GLFWmanager()$/;"	f	class:GLFWmanager
 GLFWmanager	./GLFWwrappers/GLFWmanager.h	/^class GLFWmanager$/;"	c
-GLFWwrappers	./GLFWwrappers/CMakeLists.txt	/^add_library(GLFWwrappers GLFWmanager.cpp Window.cpp)$/;"	t
 Image	./VulkanWrappers/Image.cpp	/^Image::Image(Image&& rhs) :$/;"	f	class:Image
 Image	./VulkanWrappers/Image.cpp	/^Image::Image(VkDevice device, const VkImageCreateInfo& createInfo) :$/;"	f	class:Image
 Image	./VulkanWrappers/Image.h	/^class Image$/;"	c
@@ -90,7 +89,6 @@ QueueFamily	./VulkanWrappers/LogicalDevice.h	/^struct QueueFamily$/;"	s
 RenderPass	./VulkanWrappers/RenderPass.cpp	/^RenderPass::RenderPass(RenderPass&& rhs) :$/;"	f	class:RenderPass
 RenderPass	./VulkanWrappers/RenderPass.cpp	/^RenderPass::RenderPass(VkDevice device, const VkRenderPassCreateInfo& createInfo) :$/;"	f	class:RenderPass
 RenderPass	./VulkanWrappers/RenderPass.h	/^class RenderPass$/;"	c
-Rendering	./Rendering/CMakeLists.txt	/^add_library(Rendering InstanceHelpers.cpp RenderingDevice.cpp ImageViewHelpers.cpp RenderPassHel/;"	t
 RenderingDevice	./Rendering/RenderingDevice.cpp	/^RenderingDevice::RenderingDevice(RenderingDevice&& rhs) :$/;"	f	class:RenderingDevice
 RenderingDevice	./Rendering/RenderingDevice.cpp	/^RenderingDevice::RenderingDevice(VkInstance instance, VkSurfaceKHR surface)$/;"	f	class:RenderingDevice
 RenderingDevice	./Rendering/RenderingDevice.h	/^class RenderingDevice : public LogicalDevice$/;"	c
@@ -100,7 +98,6 @@ RenderingFramebuffer	./Rendering/RenderingFramebuffer.h	/^class RenderingFramebu
 RenderingManager	./Rendering/RenderingManager.cpp	/^RenderingManager::RenderingManager() :$/;"	f	class:RenderingManager
 RenderingManager	./Rendering/RenderingManager.h	/^class RenderingManager$/;"	c
 RenderingManager	Rendering/RenderingManager.cpp	/^RenderingManager::RenderingManager() :$/;"	f	class:RenderingManager
-RenderingManager	Rendering/RenderingManager.h	/^class RenderingManager$/;"	c
 RenderingSwapchain	./Rendering/RenderingSwapchain.cpp	/^RenderingSwapchain::RenderingSwapchain($/;"	f	class:RenderingSwapchain
 RenderingSwapchain	./Rendering/RenderingSwapchain.cpp	/^RenderingSwapchain::RenderingSwapchain(RenderingSwapchain&& rhs) :$/;"	f	class:RenderingSwapchain
 RenderingSwapchain	./Rendering/RenderingSwapchain.h	/^class RenderingSwapchain : public Swapchain$/;"	c
@@ -117,11 +114,9 @@ Swapchain	./VulkanWrappers/Swapchain.cpp	/^Swapchain::Swapchain() :$/;"	f	class:
 Swapchain	./VulkanWrappers/Swapchain.cpp	/^Swapchain::Swapchain(Swapchain&& rhs) :$/;"	f	class:Swapchain
 Swapchain	./VulkanWrappers/Swapchain.cpp	/^Swapchain::Swapchain(VkDevice device, const VkSwapchainCreateInfoKHR& createInfo) :$/;"	f	class:Swapchain
 Swapchain	./VulkanWrappers/Swapchain.h	/^class Swapchain$/;"	c
-Utility	./Utility/CMakeLists.txt	/^add_library(Utility Utility.cpp)$/;"	t
 VK_CHECK	./GLFWwrappers/VulkanWithGLFW.h	/^#define VK_CHECK(/;"	d
 Vertex	./Rendering/Vertex.h	/^struct Vertex$/;"	s
-VulkanTriangle	./CMakeLists.txt	/^project(VulkanTriangle)$/;"	p
-VulkanWrappers	./VulkanWrappers/CMakeLists.txt	/^add_library(VulkanWrappers Instance.cpp LogicalDevice.cpp RenderPass.cpp Fence.cpp Semaphore.cpp/;"	t
+VulkanTriangle	CMakeLists.txt	/^project(VulkanTriangle)$/;"	p
 Window	./GLFWwrappers/Window.cpp	/^Window::Window()$/;"	f	class:Window
 Window	./GLFWwrappers/Window.h	/^class Window$/;"	c
 __anone99712860102	./VulkanWrappers/EnumerationHelpers.h	/^	enumerateArray<VkLayerProperties>([](uint32_t* count, VkLayerProperties* elements) {$/;"	f	function:enumerateInstanceLayerProperties	file:
@@ -132,23 +127,17 @@ __anone99712860502	./VulkanWrappers/EnumerationHelpers.h	/^	enumerateArray<VkExt
 __anone99712860602	./VulkanWrappers/EnumerationHelpers.h	/^	enumerateArray<VkSurfaceFormatKHR>([physicalDevice, surface](uint32_t* count, VkSurfaceFormatKH/;"	f	function:getPhysicalDeviceSurfaceFormatsKHR	file:
 __anone99712860702	./VulkanWrappers/EnumerationHelpers.h	/^	enumerateArray<VkImage>([device, swapchain](uint32_t* count, VkImage* elements) {$/;"	f	function:getSwapchainImagesKHR	file:
 acquiredImageSemaphore	./Rendering/RenderingManager.h	/^    Semaphore acquiredImageSemaphore, finishedRenderingSemaphore;$/;"	m	class:RenderingManager	typeref:typename:Semaphore
-acquiredImageSemaphore	Rendering/RenderingManager.h	/^    Semaphore acquiredImageSemaphore, finishedRenderingSemaphore;$/;"	m	class:RenderingManager	typeref:typename:Semaphore
 areExtensionsSupported	./Rendering/InstanceHelpers.cpp	/^bool areExtensionsSupported(const std::vector<const char*>& extensions)$/;"	f	typeref:typename:bool
 areLayersSupported	./Rendering/InstanceHelpers.cpp	/^bool areLayersSupported(const std::vector<const char*>& layers)$/;"	f	typeref:typename:bool
 checkVkResult	./GLFWwrappers/VulkanWithGLFW.h	/^inline void checkVkResult(VkResult result, const char* filename, int lineNumber)$/;"	f	typeref:typename:void
 clamp	./Utility/Utility.h	/^T clamp(T x, T min, T max)$/;"	f	typeref:typename:T
 color	./Rendering/Vertex.h	/^    vec3 position, color;$/;"	m	struct:Vertex	typeref:typename:vec3
 commandBuffer	./Rendering/RenderingManager.h	/^    VkCommandBuffer commandBuffer;$/;"	m	class:RenderingManager	typeref:typename:VkCommandBuffer
-commandBuffer	Rendering/RenderingManager.h	/^    VkCommandBuffer commandBuffer;$/;"	m	class:RenderingManager	typeref:typename:VkCommandBuffer
 commandPool	./Rendering/RenderingManager.h	/^    CommandPool commandPool;$/;"	m	class:RenderingManager	typeref:typename:CommandPool
-commandPool	Rendering/RenderingManager.h	/^    CommandPool commandPool;$/;"	m	class:RenderingManager	typeref:typename:CommandPool
 createBinarySemaphore	./Rendering/SynchronizationHelpers.cpp	/^Semaphore createBinarySemaphore(VkDevice device)$/;"	f	typeref:typename:Semaphore
-createBinarySemaphore	Rendering/SynchronizationHelpers.cpp	/^Semaphore createBinarySemaphore(VkDevice device)$/;"	f	typeref:typename:Semaphore
 createDebugger	./Rendering/DebugUtilsMessengerHelpers.cpp	/^DebugUtilsMessenger createDebugger(VkInstance instance)$/;"	f	typeref:typename:DebugUtilsMessenger
 createEmptyPipelineLayout	./Rendering/GraphicsPipelineHelpers.cpp	/^PipelineLayout createEmptyPipelineLayout(VkDevice device)$/;"	f	typeref:typename:PipelineLayout
-createFence	./Rendering/SynchronizationHelpers.cpp	/^Fence createFence(VkDevice device)$/;"	f	typeref:typename:Fence
-createFence	Rendering/SynchronizationHelpers.cpp	/^Fence createFence(VkDevice device, bool initiallySignaled = false)$/;"	f	typeref:typename:Fence
-createFence	Rendering/SynchronizationHelpers.cpp	/^Fence createFence(VkDevice device, bool initiallySignaled)$/;"	f	typeref:typename:Fence
+createFence	./Rendering/SynchronizationHelpers.cpp	/^Fence createFence(VkDevice device, bool initiallySignaled)$/;"	f	typeref:typename:Fence
 createRenderingCommandPool	./Rendering/CommandPoolHelpers.cpp	/^CommandPool createRenderingCommandPool(VkDevice device, uint32_t graphicsQueueFamilyIndex)$/;"	f	typeref:typename:CommandPool
 createRenderingImageView	./Rendering/ImageViewHelpers.cpp	/^ImageView createRenderingImageView(VkDevice device, VkImage image)$/;"	f	typeref:typename:ImageView
 createRenderingInstance	./Rendering/InstanceHelpers.cpp	/^Instance createRenderingInstance()$/;"	f	typeref:typename:Instance
@@ -158,7 +147,6 @@ createShaderModule	./Rendering/GraphicsPipelineHelpers.cpp	/^ShaderModule create
 data	./Rendering/LinearHostImage.h	/^    void* data;$/;"	m	class:LinearHostImage	typeref:typename:void *
 debugCallback	./Rendering/DebugUtilsMessengerHelpers.cpp	/^VkBool32 VKAPI_PTR debugCallback($/;"	f	typeref:typename:VkBool32 VKAPI_PTR
 debugMessenger	./Rendering/RenderingManager.h	/^    DebugUtilsMessenger debugMessenger;$/;"	m	class:RenderingManager	typeref:typename:DebugUtilsMessenger
-debugMessenger	Rendering/RenderingManager.h	/^    DebugUtilsMessenger debugMessenger;$/;"	m	class:RenderingManager	typeref:typename:DebugUtilsMessenger
 defaultQueuePriority	./Rendering/RenderingDevice.cpp	/^const float defaultQueuePriority = 1.0f;$/;"	v	typeref:typename:const float
 device	./Rendering/RenderingManager.h	/^    RenderingDevice device;$/;"	m	class:RenderingManager	typeref:typename:RenderingDevice
 device	./VulkanWrappers/CommandPool.h	/^    VkDevice device;$/;"	m	class:CommandPool	typeref:typename:VkDevice
@@ -173,7 +161,6 @@ device	./VulkanWrappers/RenderPass.h	/^    VkDevice device;$/;"	m	class:RenderPa
 device	./VulkanWrappers/Semaphore.h	/^    VkDevice device;$/;"	m	class:Semaphore	typeref:typename:VkDevice
 device	./VulkanWrappers/ShaderModule.h	/^    VkDevice device;$/;"	m	class:ShaderModule	typeref:typename:VkDevice
 device	./VulkanWrappers/Swapchain.h	/^    VkDevice device;$/;"	m	class:Swapchain	typeref:typename:VkDevice
-device	Rendering/RenderingManager.h	/^    RenderingDevice device;$/;"	m	class:RenderingManager	typeref:typename:RenderingDevice
 doesPhysicalDeviceSupportExtensions	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportExtensions($/;"	f	typeref:typename:bool
 doesPhysicalDeviceSupportFeatures	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportFeatures($/;"	f	typeref:typename:bool
 doesPhysicalDeviceSupportRequiredQueueCapabilities	./Rendering/RenderingDevice.cpp	/^bool doesPhysicalDeviceSupportRequiredQueueCapabilities(VkInstance instance, VkPhysicalDevice ph/;"	f	typeref:typename:bool
@@ -188,9 +175,7 @@ enumeratePhysicalDevices	./VulkanWrappers/EnumerationHelpers.h	/^inline std::vec
 findPhysicalDevice	./Rendering/RenderingDevice.cpp	/^VkPhysicalDevice findPhysicalDevice(VkInstance instance, VkSurfaceKHR surface)$/;"	f	typeref:typename:VkPhysicalDevice
 findRequiredMemoryTypeIndex	./Rendering/LinearHostImage.cpp	/^uint32_t findRequiredMemoryTypeIndex($/;"	f	typeref:typename:uint32_t
 finishedRenderingFence	./Rendering/RenderingManager.h	/^    Fence finishedRenderingFence;$/;"	m	class:RenderingManager	typeref:typename:Fence
-finishedRenderingFence	Rendering/RenderingManager.h	/^    Fence finishedRenderingFence;$/;"	m	class:RenderingManager	typeref:typename:Fence
 finishedRenderingSemaphore	./Rendering/RenderingManager.h	/^    Semaphore acquiredImageSemaphore, finishedRenderingSemaphore;$/;"	m	class:RenderingManager	typeref:typename:Semaphore
-finishedRenderingSemaphore	Rendering/RenderingManager.h	/^    Semaphore acquiredImageSemaphore, finishedRenderingSemaphore;$/;"	m	class:RenderingManager	typeref:typename:Semaphore
 framebuffers	./Rendering/RenderingSwapchain.h	/^    std::vector<RenderingFramebuffer> framebuffers;$/;"	m	class:RenderingSwapchain	typeref:typename:std::vector<RenderingFramebuffer>
 getApplicationInfo	./Rendering/InstanceHelpers.cpp	/^VkApplicationInfo getApplicationInfo()$/;"	f	typeref:typename:VkApplicationInfo
 getAttachmentDescriptions	./Rendering/RenderPassHelpers.cpp	/^std::vector<VkAttachmentDescription> getAttachmentDescriptions()$/;"	f	typeref:typename:std::vector<VkAttachmentDescription>
@@ -252,8 +237,7 @@ getScissor	./Rendering/GraphicsPipelineHelpers.cpp	/^VkRect2D getScissor(GLFWwin
 getShaderStageInfos	./Rendering/GraphicsPipelineHelpers.cpp	/^std::vector<VkPipelineShaderStageCreateInfo> getShaderStageInfos($/;"	f	typeref:typename:std::vector<VkPipelineShaderStageCreateInfo>
 getSubpassDescriptions	./Rendering/RenderPassHelpers.cpp	/^std::vector<VkSubpassDescription> getSubpassDescriptions(const VkAttachmentReference& outputRefe/;"	f	typeref:typename:std::vector<VkSubpassDescription>
 getSwapchainImagesKHR	./VulkanWrappers/EnumerationHelpers.h	/^inline std::vector<VkImage> getSwapchainImagesKHR($/;"	f	typeref:typename:std::vector<VkImage>
-getTexelAddr	Rendering/RenderingManager.cpp	/^void* getTexelAddr(VkSubresourceLayout layout, int elementSize, int x, int y, int z, int layer)$/;"	f	typeref:typename:void *
-getTexelAddr	Rendering/RenderingManager.cpp	/^void* getTexelAddr(VkSubresourceLayout layout, int x, int y, int z, int layer)$/;"	f	typeref:typename:void *
+getTexelOffset	./Rendering/RenderingManager.cpp	/^int getTexelOffset(VkSubresourceLayout layout, int elementSize, int x, int y, int z, int layer)$/;"	f	typeref:typename:int
 getTexelOffset	Rendering/RenderingManager.cpp	/^int getTexelOffset(VkSubresourceLayout layout, int elementSize, int x, int y, int z, int layer)$/;"	f	typeref:typename:int
 getVertexBindings	./Rendering/GraphicsPipelineHelpers.cpp	/^std::vector<VkVertexInputBindingDescription> getVertexBindings()$/;"	f	typeref:typename:std::vector<VkVertexInputBindingDescription>
 getVertexInputInfo	./Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineVertexInputStateCreateInfo getVertexInputInfo($/;"	f	typeref:typename:VkPipelineVertexInputStateCreateInfo
@@ -262,7 +246,6 @@ getViewportInfo	./Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineViewportStat
 glfwErrorCallback	./GLFWwrappers/GLFWmanager.cpp	/^void glfwErrorCallback(int errorCode, const char* description)$/;"	f	typeref:typename:void
 graphicsFamilyIndex	./Rendering/RenderingDevice.h	/^    size_t graphicsFamilyIndex, presentFamilyIndex;$/;"	m	class:RenderingDevice	typeref:typename:size_t
 graphicsPipeline	./Rendering/RenderingManager.h	/^    Pipeline graphicsPipeline;$/;"	m	class:RenderingManager	typeref:typename:Pipeline
-graphicsPipeline	Rendering/RenderingManager.h	/^    Pipeline graphicsPipeline;$/;"	m	class:RenderingManager	typeref:typename:Pipeline
 handle	./VulkanWrappers/CommandPool.h	/^    VkCommandPool handle;$/;"	m	class:CommandPool	typeref:typename:VkCommandPool
 handle	./VulkanWrappers/DebugUtilsMessenger.h	/^    VkDebugUtilsMessengerEXT handle;$/;"	m	class:DebugUtilsMessenger	typeref:typename:VkDebugUtilsMessengerEXT
 handle	./VulkanWrappers/DeviceMemory.h	/^    VkDeviceMemory handle;$/;"	m	class:DeviceMemory	typeref:typename:VkDeviceMemory
@@ -280,17 +263,15 @@ handle	./VulkanWrappers/ShaderModule.h	/^    VkShaderModule handle;$/;"	m	class:
 handle	./VulkanWrappers/Surface.h	/^    VkSurfaceKHR handle;$/;"	m	class:Surface	typeref:typename:VkSurfaceKHR
 handle	./VulkanWrappers/Swapchain.h	/^    VkSwapchainKHR handle;$/;"	m	class:Swapchain	typeref:typename:VkSwapchainKHR
 image	./Rendering/RenderingManager.h	/^    LinearHostImage image;$/;"	m	class:RenderingManager	typeref:typename:LinearHostImage
-image	Rendering/RenderingManager.h	/^    LinearHostImage image;$/;"	m	class:RenderingManager	typeref:typename:LinearHostImage
 initVulkanAndGLFW	./GLFWwrappers/GLFWmanager.cpp	/^void GLFWmanager::initVulkanAndGLFW()$/;"	f	class:GLFWmanager	typeref:typename:void
 instance	./GLFWwrappers/GLFWmanager.cpp	/^GLFWmanager* GLFWmanager::instance = nullptr;$/;"	m	class:GLFWmanager	typeref:typename:GLFWmanager *
 instance	./GLFWwrappers/GLFWmanager.h	/^    static GLFWmanager* instance;$/;"	m	class:GLFWmanager	typeref:typename:GLFWmanager *
 instance	./Rendering/RenderingManager.h	/^    Instance instance;$/;"	m	class:RenderingManager	typeref:typename:Instance
 instance	./VulkanWrappers/DebugUtilsMessenger.h	/^    VkInstance instance;$/;"	m	class:DebugUtilsMessenger	typeref:typename:VkInstance
 instance	./VulkanWrappers/Surface.h	/^    VkInstance instance;$/;"	m	class:Surface	typeref:typename:VkInstance
-instance	Rendering/RenderingManager.h	/^    Instance instance;$/;"	m	class:RenderingManager	typeref:typename:Instance
 isASubsetOfB	./Utility/Utility.cpp	/^bool isASubsetOfB(const std::vector<const char*>& A, const std::vector<const char*>& B)$/;"	f	typeref:typename:bool
 isPhysicalDeviceSuitable	./Rendering/RenderingDevice.cpp	/^bool isPhysicalDeviceSuitable(VkInstance instance, VkPhysicalDevice physicalDevice, VkSurfaceKHR/;"	f	typeref:typename:bool
-main	./main.cpp	/^int main()$/;"	f	typeref:typename:int
+main	main.cpp	/^int main()$/;"	f	typeref:typename:int
 memory	./Rendering/LinearHostImage.h	/^    DeviceMemory memory;$/;"	m	class:LinearHostImage	typeref:typename:DeviceMemory
 operator =	./Rendering/LinearHostImage.cpp	/^LinearHostImage& LinearHostImage::operator=(LinearHostImage&& rhs)$/;"	f	class:LinearHostImage	typeref:typename:LinearHostImage &
 operator =	./Rendering/RenderingDevice.cpp	/^RenderingDevice& RenderingDevice::operator=(RenderingDevice&& rhs)$/;"	f	class:RenderingDevice	typeref:typename:RenderingDevice &
@@ -315,7 +296,6 @@ operator =	./VulkanWrappers/Swapchain.cpp	/^Swapchain& Swapchain::operator=(Swap
 outputImageView	./Rendering/RenderingFramebuffer.h	/^    ImageView outputImageView;$/;"	m	class:RenderingFramebuffer	typeref:typename:ImageView
 physicalDevice	./VulkanWrappers/LogicalDevice.h	/^    VkPhysicalDevice physicalDevice;$/;"	m	class:LogicalDevice	typeref:typename:VkPhysicalDevice
 pipelineLayout	./Rendering/RenderingManager.h	/^    PipelineLayout pipelineLayout;$/;"	m	class:RenderingManager	typeref:typename:PipelineLayout
-pipelineLayout	Rendering/RenderingManager.h	/^    PipelineLayout pipelineLayout;$/;"	m	class:RenderingManager	typeref:typename:PipelineLayout
 position	./Rendering/Vertex.h	/^    vec3 position, color;$/;"	m	struct:Vertex	typeref:typename:vec3
 presentFamilyIndex	./Rendering/RenderingDevice.h	/^    size_t graphicsFamilyIndex, presentFamilyIndex;$/;"	m	class:RenderingDevice	typeref:typename:size_t
 queueFamilies	./VulkanWrappers/LogicalDevice.h	/^    std::vector<QueueFamily> queueFamilies;$/;"	m	class:LogicalDevice	typeref:typename:std::vector<QueueFamily>
@@ -324,20 +304,16 @@ queues	./VulkanWrappers/LogicalDevice.h	/^    std::vector<VkQueue> queues;$/;"	m
 recordCommandBuffer	./Rendering/RenderingManager.cpp	/^void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, uint32_t imageInde/;"	f	class:RenderingManager	typeref:typename:void
 recordCommandBuffer	Rendering/RenderingManager.cpp	/^void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, uint32_t imageInde/;"	f	class:RenderingManager	typeref:typename:void
 renderPass	./Rendering/RenderingManager.h	/^    RenderPass renderPass;$/;"	m	class:RenderingManager	typeref:typename:RenderPass
-renderPass	Rendering/RenderingManager.h	/^    RenderPass renderPass;$/;"	m	class:RenderingManager	typeref:typename:RenderPass
 setupFramebuffers	./Rendering/RenderingSwapchain.cpp	/^void RenderingSwapchain::setupFramebuffers(VkDevice device, VkRenderPass renderPass, GLFWwindow*/;"	f	class:RenderingSwapchain	typeref:typename:void
 shouldLoop	./Rendering/RenderingManager.cpp	/^bool RenderingManager::shouldLoop()$/;"	f	class:RenderingManager	typeref:typename:bool
 shouldLoop	Rendering/RenderingManager.cpp	/^bool RenderingManager::shouldLoop()$/;"	f	class:RenderingManager	typeref:typename:bool
 swapchain	./Rendering/RenderingManager.h	/^    RenderingSwapchain swapchain;$/;"	m	class:RenderingManager	typeref:typename:RenderingSwapchain
-swapchain	Rendering/RenderingManager.h	/^    RenderingSwapchain swapchain;$/;"	m	class:RenderingManager	typeref:typename:RenderingSwapchain
 vec3	./Rendering/Vertex.h	/^struct vec3$/;"	s
-vertices	./main.cpp	/^static std::vector<Vertex> vertices = {$/;"	v	typeref:typename:std::vector<Vertex>	file:
-vulkanTriangle	./CMakeLists.txt	/^add_executable(vulkanTriangle main.cpp)$/;"	t
+vertices	main.cpp	/^static std::vector<Vertex> vertices = {$/;"	v	typeref:typename:std::vector<Vertex>	file:
+vulkanTriangle	CMakeLists.txt	/^add_executable(vulkanTriangle main.cpp)$/;"	t
 window	./GLFWwrappers/Window.h	/^    GLFWwindow* window;$/;"	m	class:Window	typeref:typename:GLFWwindow *
 window	./Rendering/RenderingManager.h	/^    Window window;$/;"	m	class:RenderingManager	typeref:typename:Window
-window	Rendering/RenderingManager.h	/^    Window window;$/;"	m	class:RenderingManager	typeref:typename:Window
 windowSurface	./Rendering/RenderingManager.h	/^    Surface windowSurface;$/;"	m	class:RenderingManager	typeref:typename:Surface
-windowSurface	Rendering/RenderingManager.h	/^    Surface windowSurface;$/;"	m	class:RenderingManager	typeref:typename:Surface
 writeImage	./Rendering/RenderingManager.cpp	/^void RenderingManager::writeImage()$/;"	f	class:RenderingManager	typeref:typename:void
 writeImage	Rendering/RenderingManager.cpp	/^void RenderingManager::writeImage()$/;"	f	class:RenderingManager	typeref:typename:void
 x	./Rendering/Vertex.h	/^    float x, y, z;$/;"	m	struct:vec3	typeref:typename:float

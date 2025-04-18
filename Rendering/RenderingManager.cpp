@@ -280,11 +280,16 @@ void RenderingManager::writeImage()
 
     vkGetImageSubresourceLayout(device.getHandle(), image.getHandle(), &subresource, &layout);
 
+    static char brightness = 0;
+    brightness = (brightness + 3) % 255;
+
     // format is VK_FORMAT_R8G8B8A8_SRGB
     char* data = reinterpret_cast<char*>(image.getData());
     for (int x = 0; x < 200; x += 3) {
 	for (int y = 0; y < 200; y += 3) {
-	    data[getTexelOffset(layout, 4, x, y, 0, 0)] = 255;
+	    for (int i = 0; i < 3; i++) {
+		data[getTexelOffset(layout, 4, x, y, 0, 0) + i] = brightness;
+	    }
 	}
     }
 

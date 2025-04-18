@@ -7,7 +7,7 @@ add_subdirectory(VulkanWrappers)
 add_subdirectory(Rendering)
 
 add_executable(vulkanTriangle main.cpp)
-target_link_libraries(vulkanTriangle PRIVATE Rendering)
+target_link_libraries(vulkanTriangle PRIVATE Rendering "${CMAKE_SOURCE_DIR}/steam_api64.lib")
 
 add_custom_command(TARGET vulkanTriangle POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
@@ -19,4 +19,10 @@ add_custom_command(TARGET vulkanTriangle POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     "${CMAKE_SOURCE_DIR}/Shaders/frag.spv"
     "$<TARGET_FILE_DIR:vulkanTriangle>/frag.spv"
+)
+
+add_custom_command(TARGET vulkanTriangle POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    "${CMAKE_SOURCE_DIR}/steam_appid.txt"
+    "$<TARGET_FILE_DIR:vulkanTriangle>/steam_appid.txt"
 )
