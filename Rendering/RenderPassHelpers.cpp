@@ -33,7 +33,7 @@ std::vector<VkAttachmentDescription> getAttachmentDescriptions()
     output.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
     output.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
     output.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
-    output.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+    output.finalLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
 
     return { output };
 }

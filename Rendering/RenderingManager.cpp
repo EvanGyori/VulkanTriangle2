@@ -171,7 +171,7 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
 
     VK_CHECK(vkBeginCommandBuffer(commandBuffer, &beginInfo));
 
-    /*
+
     // Sets all color values to 0, which gives black
     VkClearValue clearValue = {};
 
@@ -187,27 +187,10 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
 
     vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline.getHandle());
 
-    // TODO bind a vertex buffer
-
-    VkClearAttachment clearAttachment = {};
-    clearAttachment.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
-    clearAttachment.colorAttachment = 0;
-    clearAttachment.clearValue.color.float32[0] = 1.0f;
-
-    VkClearRect clearRect = {};
-    clearRect.rect = { { static_cast<int32_t>(width) / 2, static_cast<int32_t>(height) / 2 }, { 200, 200 } };
-    clearRect.layerCount = 1;
-
-    vkCmdClearAttachments(commandBuffer, 1, &clearAttachment, 1, &clearRect);
-
-    vkCmdDraw(commandBuffer, 6, 1, 0, 0);
+    vkCmdDraw(commandBuffer, 3, 1, 0, 0);
 
     vkCmdEndRenderPass(commandBuffer);
-    */
 
-    /*
-    
-    */
 
     VkImageSubresourceRange subresourceRange = {};
     subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
@@ -218,15 +201,15 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
 
     VkImageMemoryBarrier imageMemoryBarrier = {};
     imageMemoryBarrier.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
-    imageMemoryBarrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+    imageMemoryBarrier.srcAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
     imageMemoryBarrier.dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
-    imageMemoryBarrier.oldLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+    imageMemoryBarrier.oldLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL; // renderpass converts to this layout
     imageMemoryBarrier.newLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
     imageMemoryBarrier.image = images[imageIndex];
     imageMemoryBarrier.subresourceRange = subresourceRange;
 
     // Perform an image layout transition to the necessary layout for clearing. The clear operation from the previous frame is available since this waits on the fence which waits till it is available. However, it is not visible. So use the memory barrier to make it visible to the clear operation. Also have the clear operation wait till the image layout transition has been completed and made visible.
-    vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT, VK_PIPELINE_STAGE_TRANSFER_BIT,
+    vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, VK_PIPELINE_STAGE_TRANSFER_BIT,
 	    0, 0, nullptr, 0, nullptr, 1, &imageMemoryBarrier);
     /*
 
@@ -245,14 +228,15 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
     VkImageCopy region = {};
     region.srcSubresource = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1 };
     region.dstSubresource = region.srcSubresource;
-    region.extent.width = static_cast<uint32_t>(width);
-    region.extent.height = static_cast<uint32_t>(height);
+    region.extent.width = 100;
+    region.extent.height = 100;
     region.extent.depth = 1;
 
     vkCmdCopyImage(commandBuffer, image.getHandle(), VK_IMAGE_LAYOUT_GENERAL,
 	    images[imageIndex], VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
 	    1, &region);
 
+    /*
     imageMemoryBarrier = {};
     imageMemoryBarrier.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
     imageMemoryBarrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
@@ -265,6 +249,25 @@ void RenderingManager::recordCommandBuffer(const std::vector<Vertex>& buffer, ui
     // Just perform the necessary image layout transition to the present src layout. Wait on the memory writes performed by the clear for the transition but have no memory accesses wait on it.
     vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT,
 	    0, 0, nullptr, 0, nullptr, 1, &imageMemoryBarrier);
+    */
+
+
+    imageMemoryBarrier = {};
+    imageMemoryBarrier.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+    imageMemoryBarrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+    imageMemoryBarrier.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_READ_BIT
+	| VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
+    imageMemoryBarrier.oldLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
+    imageMemoryBarrier.newLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+    imageMemoryBarrier.image = images[imageIndex];
+    imageMemoryBarrier.subresourceRange = subresourceRange;
+
+    // Just perform the necessary image layout transition to the present src layout. Wait on the memory writes performed by the clear for the transition but have no memory accesses wait on it.
+    vkCmdPipelineBarrier(commandBuffer, VK_PIPELINE_STAGE_TRANSFER_BIT, VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT,
+	    0, 0, nullptr, 0, nullptr, 1, &imageMemoryBarrier); 
+
+
+    
 
     VK_CHECK(vkEndCommandBuffer(commandBuffer));
 }
@@ -280,14 +283,14 @@ void RenderingManager::writeImage()
 
     vkGetImageSubresourceLayout(device.getHandle(), image.getHandle(), &subresource, &layout);
 
-    static char brightness = 0;
-    brightness = (brightness + 3) % 255;
+    static char brightness = 122;
+    //brightness = (brightness + 3) % 255;
 
     // format is VK_FORMAT_R8G8B8A8_SRGB
     char* data = reinterpret_cast<char*>(image.getData());
-    for (int x = 0; x < 200; x += 3) {
-	for (int y = 0; y < 200; y += 3) {
-	    for (int i = 0; i < 3; i++) {
+    for (int x = 0; x < 200; x += 1) {
+	for (int y = 0; y < 200; y += 1) {
+	    for (int i = 0; i < 1; i++) {
 		data[getTexelOffset(layout, 4, x, y, 0, 0) + i] = brightness;
 	    }
 	}
