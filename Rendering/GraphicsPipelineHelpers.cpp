@@ -14,7 +14,9 @@ ShaderModule createShaderModule(
 
 std::vector<VkPipelineShaderStageCreateInfo> getShaderStageInfos(
 	ShaderModule& vertexShader,
-	ShaderModule& fragmentShader);
+	ShaderModule& fragmentShader,
+	ShaderModule& controlShader,
+	ShaderModule& evaluationShader);
 
 std::vector<VkVertexInputBindingDescription> getVertexBindings();
 
@@ -25,6 +27,8 @@ VkPipelineVertexInputStateCreateInfo getVertexInputInfo(
 	const std::vector<VkVertexInputAttributeDescription>& attributes);
 
 VkPipelineInputAssemblyStateCreateInfo getInputAssemblyInfo();
+
+VkPipelineTessellationStateCreateInfo getTessellationInfo();
 
 VkViewport getViewport(GLFWwindow* window);
 
@@ -62,15 +66,22 @@ Pipeline createRenderingPipeline(
 {
     auto vertexShaderData = getFileData("vert.spv");
     auto fragmentShaderData = getFileData("frag.spv");
+    auto controlShaderData = getFileData("tesc.spv");
+    auto evaluationShaderData = getFileData("tese.spv");
     auto vertexShaderModule = createShaderModule(device, vertexShaderData);
     auto fragmentShaderModule = createShaderModule(device, fragmentShaderData);
-    auto shaderStageInfos = getShaderStageInfos(vertexShaderModule, fragmentShaderModule);
+    auto controlShaderModule = createShaderModule(device, controlShaderData);
+    auto evaluationShaderModule = createShaderModule(device, evaluationShaderData);
+    auto shaderStageInfos = getShaderStageInfos(vertexShaderModule, fragmentShaderModule,
+	    controlShaderModule, evaluationShaderModule);
 
     auto bindings = getVertexBindings();
     auto attributes = getAttributeBindings();
     auto vertexInputInfo = getVertexInputInfo(bindings, attributes);
 
     auto inputAssemblyInfo = getInputAssemblyInfo();
+
+    auto tessellationInfo = getTessellationInfo();
 
     auto viewport = getViewport(window);
     auto scissor = getScissor(window);
@@ -87,6 +98,7 @@ Pipeline createRenderingPipeline(
     createInfo.stageCount = shaderStageInfos.size();
     createInfo.pStages = &shaderStageInfos.front();
     createInfo.pVertexInputState = &vertexInputInfo;
+    createInfo.pTessellationState = &tessellationInfo;
     createInfo.pInputAssemblyState = &inputAssemblyInfo;
     createInfo.pViewportState = &viewportInfo;
     createInfo.pRasterizationState = &rasterizationInfo;
@@ -130,9 +142,11 @@ std::vector<VkShaderModuleCreateInfo> getShaderModuleCreateInfos(
 
 std::vector<VkPipelineShaderStageCreateInfo> getShaderStageInfos(
 	ShaderModule& vertexShader,
-	ShaderModule& fragmentShader)
+	ShaderModule& fragmentShader,
+	ShaderModule& controlShader,
+	ShaderModule& evaluationShader)
 {
-    std::vector<VkPipelineShaderStageCreateInfo> shaderStages{ {}, {} };
+    std::vector<VkPipelineShaderStageCreateInfo> shaderStages{ {}, {}, {}, {} };
 
     shaderStages[0].sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
     shaderStages[0].stage = VK_SHADER_STAGE_VERTEX_BIT;
@@ -143,6 +157,16 @@ std::vector<VkPipelineShaderStageCreateInfo> getShaderStageInfos(
     shaderStages[1].stage = VK_SHADER_STAGE_FRAGMENT_BIT;
     shaderStages[1].module = fragmentShader.getHandle();
     shaderStages[1].pName = "main";
+
+    shaderStages[2].sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+    shaderStages[2].stage = VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT;
+    shaderStages[2].module = controlShader.getHandle();
+    shaderStages[2].pName = "main";
+
+    shaderStages[3].sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+    shaderStages[3].stage = VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT;
+    shaderStages[3].module = evaluationShader.getHandle();
+    shaderStages[3].pName = "main";
 
     return shaderStages;
 }
@@ -194,7 +218,16 @@ VkPipelineInputAssemblyStateCreateInfo getInputAssemblyInfo()
 {
     VkPipelineInputAssemblyStateCreateInfo info = {};
     info.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
-    info.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+    info.topology = VK_PRIMITIVE_TOPOLOGY_PATCH_LIST; //VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+
+    return info;
+}
+
+VkPipelineTessellationStateCreateInfo getTessellationInfo()
+{
+    VkPipelineTessellationStateCreateInfo info = {};
+    info.sType = VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_STATE_CREATE_INFO;
+    info.patchControlPoints = 3;
 
     return info;
 }
@@ -248,7 +281,7 @@ VkPipelineRasterizationStateCreateInfo getRasterizationInfo()
 {
     VkPipelineRasterizationStateCreateInfo info = {};
     info.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
-    info.polygonMode = VK_POLYGON_MODE_FILL;
+    info.polygonMode = VK_POLYGON_MODE_LINE;
     info.cullMode = VK_CULL_MODE_NONE;
     info.frontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
     info.lineWidth = 1.0f;

@@ -23,6 +23,18 @@ add_custom_command(TARGET vulkanTriangle POST_BUILD
 
 add_custom_command(TARGET vulkanTriangle POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    "${CMAKE_SOURCE_DIR}/Shaders/tesc.spv"
+    "$<TARGET_FILE_DIR:vulkanTriangle>/tesc.spv"
+)
+
+add_custom_command(TARGET vulkanTriangle POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    "${CMAKE_SOURCE_DIR}/Shaders/tese.spv"
+    "$<TARGET_FILE_DIR:vulkanTriangle>/tese.spv"
+)
+
+add_custom_command(TARGET vulkanTriangle POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
     "${CMAKE_SOURCE_DIR}/steam_appid.txt"
     "$<TARGET_FILE_DIR:vulkanTriangle>/steam_appid.txt"
 )

@@ -104,7 +104,10 @@ std::vector<const char*> getRequiredDeviceExtensions()
 
 VkPhysicalDeviceFeatures getRequiredFeatures()
 {
-    return {};
+    VkPhysicalDeviceFeatures features = {};
+    features.fillModeNonSolid = VK_TRUE;
+    features.tessellationShader = VK_TRUE;
+    return features;
 }
 
 std::vector<VkDeviceQueueCreateInfo> getQueueCreateInfos(VkInstance instance, VkPhysicalDevice physicalDevice)
@@ -164,7 +167,8 @@ bool doesPhysicalDeviceSupportFeatures(
     VkPhysicalDeviceFeatures supportedFeatures;
     vkGetPhysicalDeviceFeatures(physicalDevice, &supportedFeatures);
 
-    return true;
+    return supportedFeatures.fillModeNonSolid == VK_TRUE &&
+	supportedFeatures.tessellationShader == VK_TRUE;
 
     /* :(
     auto requiredAndSupportedFeatures = features & supportedFeatures;
