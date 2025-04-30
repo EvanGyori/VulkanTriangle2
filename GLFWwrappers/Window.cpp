@@ -7,7 +7,7 @@ Window::Window()
     GLFWmanager::initVulkanAndGLFW();
 
     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-    window = glfwCreateWindow(500, 500, "I DID IT!!", nullptr, nullptr);
+    window = glfwCreateWindow(800, 500, "I DID IT!!", nullptr, nullptr);
     if (window == nullptr) {
 	throw std::runtime_error("Failed to create GLFW window");
     }

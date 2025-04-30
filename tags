@@ -6996,6 +6996,7 @@ VulkanTriangle	./CMakeLists.txt	/^project(VulkanTriangle)$/;"	p
 VulkanWrappers	./VulkanWrappers/CMakeLists.txt	/^add_library(VulkanWrappers Instance.cpp LogicalDevice.cpp RenderPass.cpp Fence.cpp Semaphore.cpp/;"	t
 Window	./GLFWwrappers/Window.cpp	/^Window::Window()$/;"	f	class:Window
 Window	./GLFWwrappers/Window.h	/^class Window$/;"	c
+Window	GLFWwrappers/Window.cpp	/^Window::Window()$/;"	f	class:Window
 WorkshopEULAStatus_t	./steam/isteamugc.h	/^struct WorkshopEULAStatus_t$/;"	s
 X64BITS	./steam/steamtypes.h	/^#define X64BITS$/;"	d
 _SCE_PAD_TRIGGER_EFFECT_H	./steam/isteamdualsense.h	/^#define _SCE_PAD_TRIGGER_EFFECT_H$/;"	d
@@ -10016,6 +10017,7 @@ getHandle	./VulkanWrappers/Semaphore.cpp	/^VkSemaphore Semaphore::getHandle()$/;
 getHandle	./VulkanWrappers/ShaderModule.cpp	/^VkShaderModule ShaderModule::getHandle()$/;"	f	class:ShaderModule	typeref:typename:VkShaderModule
 getHandle	./VulkanWrappers/Surface.cpp	/^VkSurfaceKHR Surface::getHandle()$/;"	f	class:Surface	typeref:typename:VkSurfaceKHR
 getHandle	./VulkanWrappers/Swapchain.cpp	/^VkSwapchainKHR Swapchain::getHandle()$/;"	f	class:Swapchain	typeref:typename:VkSwapchainKHR
+getHandle	GLFWwrappers/Window.cpp	/^GLFWwindow* Window::getHandle()$/;"	f	class:Window	typeref:typename:GLFWwindow *
 getImageCreateInfo	./Rendering/LinearHostImage.cpp	/^VkImageCreateInfo getImageCreateInfo(GLFWwindow* window)$/;"	f	typeref:typename:VkImageCreateInfo
 getImageExtent	./Rendering/RenderingSwapchain.cpp	/^VkExtent2D getImageExtent(VkSurfaceCapabilitiesKHR surfaceCapabilities, GLFWwindow* window)$/;"	f	typeref:typename:VkExtent2D
 getInputAssemblyInfo	./Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineInputAssemblyStateCreateInfo getInputAssemblyInfo()$/;"	f	typeref:typename:VkPipelineInputAssemblyStateCreateInfo
@@ -25279,3 +25281,4 @@ z	./Rendering/Vertex.h	/^    float x, y, z;$/;"	m	struct:vec3	typeref:typename:f
 ~Surface	./VulkanWrappers/Surface.cpp	/^Surface::~Surface()$/;"	f	class:Surface
 ~Swapchain	./VulkanWrappers/Swapchain.cpp	/^Swapchain::~Swapchain()$/;"	f	class:Swapchain
 ~Window	./GLFWwrappers/Window.cpp	/^Window::~Window()$/;"	f	class:Window
+~Window	GLFWwrappers/Window.cpp	/^Window::~Window()$/;"	f	class:Window
