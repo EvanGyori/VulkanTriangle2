@@ -7974,7 +7974,6 @@ constval	./steam/steam_api.json	/^    { "constname":"k_usFriendGameInfoQueryPort
 controllerHandle	./steam/isteaminput.h	/^	InputHandle_t controllerHandle;$/;"	m	struct:SteamInputActionEvent_t	typeref:typename:InputHandle_t
 createBinarySemaphore	./Rendering/SynchronizationHelpers.cpp	/^Semaphore createBinarySemaphore(VkDevice device)$/;"	f	typeref:typename:Semaphore
 createDebugger	./Rendering/DebugUtilsMessengerHelpers.cpp	/^DebugUtilsMessenger createDebugger(VkInstance instance)$/;"	f	typeref:typename:DebugUtilsMessenger
-createDebugger	Rendering/DebugUtilsMessengerHelpers.cpp	/^DebugUtilsMessenger createDebugger(VkInstance instance)$/;"	f	typeref:typename:DebugUtilsMessenger
 createEmptyPipelineLayout	./Rendering/GraphicsPipelineHelpers.cpp	/^PipelineLayout createEmptyPipelineLayout(VkDevice device)$/;"	f	typeref:typename:PipelineLayout
 createFence	./Rendering/SynchronizationHelpers.cpp	/^Fence createFence(VkDevice device, bool initiallySignaled)$/;"	f	typeref:typename:Fence
 createRenderingCommandPool	./Rendering/CommandPoolHelpers.cpp	/^CommandPool createRenderingCommandPool(VkDevice device, uint32_t graphicsQueueFamilyIndex)$/;"	f	typeref:typename:CommandPool
@@ -8027,7 +8026,6 @@ dc_west_pan	./steam/isteamhtmlsurface.h	/^		dc_west_pan,$/;"	e	enum:ISteamHTMLSu
 dc_zoomin	./steam/isteamhtmlsurface.h	/^		dc_zoomin,$/;"	e	enum:ISteamHTMLSurface::EMouseCursor
 dc_zoomout	./steam/isteamhtmlsurface.h	/^		dc_zoomout,$/;"	e	enum:ISteamHTMLSurface::EMouseCursor
 debugCallback	./Rendering/DebugUtilsMessengerHelpers.cpp	/^VkBool32 VKAPI_PTR debugCallback($/;"	f	typeref:typename:VkBool32 VKAPI_PTR
-debugCallback	Rendering/DebugUtilsMessengerHelpers.cpp	/^VkBool32 VKAPI_PTR debugCallback($/;"	f	typeref:typename:VkBool32 VKAPI_PTR
 debugMessenger	./Rendering/RenderingManager.h	/^    DebugUtilsMessenger debugMessenger;$/;"	m	class:RenderingManager	typeref:typename:DebugUtilsMessenger
 defaultQueuePriority	./Rendering/RenderingDevice.cpp	/^const float defaultQueuePriority = 1.0f;$/;"	v	typeref:typename:const float
 desc	./steam/steam_api.json	/^              "desc": "Array of users to retrieve",$/;"	s	object:interfaces.13.methods.29.params.1
@@ -9996,7 +9994,6 @@ getColorBlendInfo	./Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineColorBlend
 getCompositeAlpha	./Rendering/RenderingSwapchain.cpp	/^VkCompositeAlphaFlagBitsKHR getCompositeAlpha(VkSurfaceCapabilitiesKHR surfaceCapabilities)$/;"	f	typeref:typename:VkCompositeAlphaFlagBitsKHR
 getData	./Rendering/LinearHostImage.cpp	/^void* LinearHostImage::getData()$/;"	f	class:LinearHostImage	typeref:typename:void *
 getDebuggerCreateInfo	./Rendering/DebugUtilsMessengerHelpers.cpp	/^VkDebugUtilsMessengerCreateInfoEXT getDebuggerCreateInfo()$/;"	f	typeref:typename:VkDebugUtilsMessengerCreateInfoEXT
-getDebuggerCreateInfo	Rendering/DebugUtilsMessengerHelpers.cpp	/^VkDebugUtilsMessengerCreateInfoEXT getDebuggerCreateInfo()$/;"	f	typeref:typename:VkDebugUtilsMessengerCreateInfoEXT
 getFileData	./Utility/Utility.cpp	/^std::vector<char> getFileData(const char* filename)$/;"	f	typeref:typename:std::vector<char>
 getFramebuffer	./Rendering/RenderingSwapchain.cpp	/^RenderingFramebuffer& RenderingSwapchain::getFramebuffer(uint32_t imageIndex)$/;"	f	class:RenderingSwapchain	typeref:typename:RenderingFramebuffer &
 getFunction_vkCreateDebugUtilsMessengerEXT	./VulkanWrappers/DebugUtilsMessenger.cpp	/^PFN_vkCreateDebugUtilsMessengerEXT getFunction_vkCreateDebugUtilsMessengerEXT(VkInstance instanc/;"	f	typeref:typename:PFN_vkCreateDebugUtilsMessengerEXT
@@ -10025,9 +10022,7 @@ getInputAssemblyInfo	./Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineInputAs
 getMemoryAllocateInfo	./Rendering/LinearHostImage.cpp	/^VkMemoryAllocateInfo getMemoryAllocateInfo($/;"	f	typeref:typename:VkMemoryAllocateInfo
 getMemoryHandle	./Rendering/LinearHostImage.cpp	/^VkDeviceMemory LinearHostImage::getMemoryHandle()$/;"	f	class:LinearHostImage	typeref:typename:VkDeviceMemory
 getMessageSeverityString	./Rendering/DebugUtilsMessengerHelpers.cpp	/^const char* getMessageSeverityString(VkDebugUtilsMessageSeverityFlagBitsEXT severityFlag)$/;"	f	typeref:typename:const char *
-getMessageSeverityString	Rendering/DebugUtilsMessengerHelpers.cpp	/^const char* getMessageSeverityString(VkDebugUtilsMessageSeverityFlagBitsEXT severityFlag)$/;"	f	typeref:typename:const char *
 getMessageTypesString	./Rendering/DebugUtilsMessengerHelpers.cpp	/^std::string getMessageTypesString(VkDebugUtilsMessageTypeFlagsEXT typeFlags)$/;"	f	typeref:typename:std::string
-getMessageTypesString	Rendering/DebugUtilsMessengerHelpers.cpp	/^std::string getMessageTypesString(VkDebugUtilsMessageTypeFlagsEXT typeFlags)$/;"	f	typeref:typename:std::string
 getMinImageCount	./Rendering/RenderingSwapchain.cpp	/^uint32_t getMinImageCount(VkSurfaceCapabilitiesKHR surfaceCapabilities)$/;"	f	typeref:typename:uint32_t
 getMultisampleInfo	./Rendering/GraphicsPipelineHelpers.cpp	/^VkPipelineMultisampleStateCreateInfo getMultisampleInfo()$/;"	f	typeref:typename:VkPipelineMultisampleStateCreateInfo
 getOutputReference	./Rendering/RenderPassHelpers.cpp	/^VkAttachmentReference getOutputReference()$/;"	f	typeref:typename:VkAttachmentReference
